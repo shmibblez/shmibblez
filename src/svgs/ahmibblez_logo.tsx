@@ -1,5 +1,6 @@
 import * as React from "react";
 
+// shmibblez logo, good enough for now
 const SVGComponent = (props: {}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
