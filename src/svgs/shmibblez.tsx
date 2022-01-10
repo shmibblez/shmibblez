@@ -1,6 +1,6 @@
 import * as React from "react";
 
-// shmibblez logo, good enough for now
+// shmibblez text logo, good enough for now
 const SVGComponent = (props: {}) => (
   <svg
     strokeLinejoin="bevel"
