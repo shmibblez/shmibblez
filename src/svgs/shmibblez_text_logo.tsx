@@ -1,12 +1,13 @@
 import * as React from "react";
 
 // shmibblez text logo, good enough for now
-const SVGComponent = (props: {}) => (
+// aspect ratio: 49:5
+const ShmibblezTextLogo = (props: {}) => (
   <svg
     strokeLinejoin="bevel"
     strokeLinecap="square"
     strokeWidth={0.5}
-    stroke="#000"
+    stroke="#FFF"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 49 5"
@@ -16,4 +17,4 @@ const SVGComponent = (props: {}) => (
   </svg>
 );
 
-export default SVGComponent;
+export default ShmibblezTextLogo;
