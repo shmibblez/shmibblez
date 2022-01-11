@@ -10,6 +10,7 @@ const Shmibblogo = (props: React.SVGProps<SVGSVGElement>) => (
     stroke="#FFF"
     strokeLinecap="round"
     strokeLinejoin="round"
+    strokeWidth={1.25}
     {...props}
 
   >

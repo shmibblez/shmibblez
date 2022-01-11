@@ -17,6 +17,17 @@ const theme = extendTheme({
           padding: "0",
         }
       },
+      variants: {
+        line: {
+          tab: {
+            borderBottom: "4px solid",
+            borderColor: "transparent",
+            _selected: {
+              borderColor: "red"
+            }
+          },
+        }
+      }
 
     }
   }
