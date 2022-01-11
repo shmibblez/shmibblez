@@ -21,9 +21,10 @@ const theme = extendTheme({
         line: {
           tab: {
             borderBottom: "4px solid",
-            borderColor: "transparent",
+            borderColor: "white",
             _selected: {
-              borderColor: "red"
+              borderColor: "red",
+              color: "red"
             }
           },
         }

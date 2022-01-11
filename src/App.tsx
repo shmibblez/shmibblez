@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Box, Tabs, TabList, Tab, TabPanels, TabPanel, Flex } from '@chakra-ui/react';
 import Shmibblogo from './svgs/shmibblez_logo';
@@ -11,10 +10,10 @@ import { Cart } from './pages/cart';
 function App() {
   return (
     <Box>
-      <Tabs variant="line">
+      <Tabs variant="line" isLazy>
         <Flex direction="row">
           <Logos style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", padding: "8px" }} />
-          <TabList flex="1" justifyContent="space-evenly" flexDirection={{ base: "column", sm: "row" }}>
+          <TabList flex="1" justifyContent="space-evenly" flexDirection={{ base: "column", sm: "row" }} bg="black" color="white">
             <Tab flex="1">HOME</Tab>
             <Tab flex="1">STORE</Tab>
             <Tab flex="1">CART</Tab>
