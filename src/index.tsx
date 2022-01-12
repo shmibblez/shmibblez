@@ -34,6 +34,9 @@ const theme = extendTheme({
   }
 })
 
+document.body.style.height = "100%"
+document.body.style.backgroundColor = "black"
+
 ReactDOM.render(
   <ChakraProvider theme={theme}>
     <React.StrictMode>

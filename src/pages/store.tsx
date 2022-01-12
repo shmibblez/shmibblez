@@ -50,14 +50,14 @@ function Item(props: { itemsPerRow: number, indx: number }) {
   const isEven = (n: number) => { return !isOdd(n) }
   const colNum = Math.trunc(props.indx / props.itemsPerRow)
   const reversed = isEven(props.itemsPerRow) && isOdd(colNum)
-  const bgColor = reversed ? (isOdd(props.indx) ? "black" : "white") : (isOdd(props.indx) ? "white" : "black")
-  const textColor = reversed ? (isOdd(props.indx) ? "white" : "black") : (isOdd(props.indx) ? "black" : "white")
-  const subTextColor = "gray"//reversed ? (isOdd(props.indx) ? "white" : "black") : (isOdd(props.indx) ? "black" : "white")
+  const bgColor = reversed ? (isOdd(props.indx) ? "red" : "black") : (isOdd(props.indx) ? "black" : "red")
+  const textColor = "white" //reversed ? (isOdd(props.indx) ? "black" : "white") : (isOdd(props.indx) ? "white" : "black")
+  const subTextColor = "gray" //reversed ? (isOdd(props.indx) ? "black" : "gray") : (isOdd(props.indx) ? "gray" : "black")
   return (
     <Box p="1em" background={bgColor}>
       <Box bg="transparent" border="1px solid" borderColor="gray"><svg viewBox="0 0 1 1" fill="transparent" width="100%" /></Box>
-      <Text color={subTextColor} fontSize="sm" as="i">item #{props.indx}</Text>
-      <Text color={textColor}>price: $40.000 COP</Text>
+      <Text color={subTextColor} fontSize="sm" as="i" fontWeight="bold">item #{props.indx}</Text>
+      <Text color={textColor} fontWeight="bold">price: ${props.indx}.000 COP</Text>
     </Box>
   )
 }
