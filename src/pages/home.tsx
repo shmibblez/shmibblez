@@ -25,7 +25,7 @@ export const Home = (props: {}) => {
 function Item(props: { img: string, name: string, desc: string }) {
   return (
     <Box {...props} bg="#000" p="1em">
-      <img src={props.img} />
+      <img src={props.img} width="100%" />
       <Text fontSize="xl" fontWeight="bold" color="white">{props.name}</Text>
       <Text fontSize="md" color="white">{props.desc}</Text>
     </Box>);
