@@ -1,0 +1,9 @@
+#item #arrows {
+  opacity: 0;
+  transition: opacity .5s;
+}
+
+#item:hover #arrows {
+  opacity: 1;
+  transition: opacity .25s;
+}
