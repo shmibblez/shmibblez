@@ -7,23 +7,9 @@ import { Home } from './pages/home';
 import { Store } from './pages/store';
 import { Cart } from './pages/cart';
 
-// TODO: move setup to redux on app start (async) and depending on state show loading in store and cart
-import * as Realm from "realm-web";
-import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+// TODO: custom resolver, rename from itemsForSale to itemsCustom (better describes filter)
 
-// TODO
-export const APP_ID = "<Your App ID>";
-const graphqlUri = `https://realm.mongodb.com/api/client/v2.0/app/${APP_ID}/graphql`
-// Local apps should use a local URI!
-// const graphqlUri = `https://us-east-1.aws.stitch.mongodb.com/api/client/v2.0/app/${APP_ID}/graphql`
-// const graphqlUri = `https://eu-west-1.aws.stitch.mongodb.com/api/client/v2.0/app/${APP_ID}/graphql`
-// const graphqlUri = `https://ap-southeast-1.aws.stitch.mongodb.com/api/client/v2.0/app/${APP_ID}/graphql`
-const client = new ApolloClient({
-  link: new HttpLink({
-    uri: graphqlUri
-  }),
-  cache: new InMemoryCache(),
-});
+// TODO: move setup to redux on app start (async) and depending on state show loading in store and cart
 
 
 function App() {
