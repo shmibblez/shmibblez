@@ -7,7 +7,7 @@ import { Item } from '../objects/item';
 import { gql, useLazyQuery, useQuery } from '@apollo/client';
 import { atom, useRecoilState } from 'recoil';
 
-const queryItemState = atom<"loading" | "error" | "idle">({
+const queryStateBarState = atom<"loading" | "error" | "idle">({
   key: "errorItemState",
   default: "idle"
 })
@@ -89,13 +89,13 @@ function Items() {
 // - error: message with retry button
 // - idle: nothing, wears invisibility cloak
 function QueryStateBar() {
-  const [state, setErrorItemState] = useRecoilState(queryItemState)
+  const [state, setErrorItemState] = useRecoilState(queryStateBarState)
   switch (state) {
     case "error": // if error occurs, show message and button that triggers query retry
       return (
         <Flex p="1em" direction="row">
           <Text flex="1">Failed to load, check wifi connection then retry. If not, I probably messed up some code, check back in a couple of days while I fix it.</Text>
-          <Button onClick={() => {/** TODO: call load more from here */ }}>Retry</Button>
+          <Button onClick={() => {/** TODO: call load more from here, also need to hookup query state with QueryStateBarState */ }}>Retry</Button>
         </Flex>
       )
     case "loading": // if loading show loading indicator
