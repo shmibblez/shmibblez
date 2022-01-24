@@ -1,5 +1,5 @@
 import { Box, Button, Flex, SimpleGrid, Text } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useContext, useEffect, useState } from 'react';
 import LeftArrow from '../svgs/left_arrow';
 import RightArrow from '../svgs/right_arrow';
 import "../css/store.css"
@@ -7,21 +7,23 @@ import { Item } from '../objects/item';
 import { gql, useLazyQuery, useQuery } from '@apollo/client';
 import { atom, useRecoilState } from 'recoil';
 
-const queryStateBarState = atom<"loading" | "error" | "idle">({
-  key: "errorItemState",
-  default: "idle"
-})
-const itemsState = atom<Item[]>({
-  key: "itemsState",
-  default: []
-})
+type QueryStateBarState = "loading" | "error" | "noMoreItems" | "idle";
+type SetQueryStateBarState = (newState: QueryStateBarState) => void;
+type RefetchQueryStateBarQuery = () => void;
+const QueryStateBarContext = React.createContext<[QueryStateBarState, SetQueryStateBarState, RefetchQueryStateBarQuery]>(["idle", () => { }, () => { }])
 
-export class Store extends React.Component<{}, {}> {
-  constructor(props: {}) {
-    super(props)
-  }
-  render(): React.ReactNode {
-    return (
+const QueryStateBarContextProvider = (props: { children: ReactElement }) => {
+  const [queryStateBarState, setState] = useState<QueryStateBarState>("idle")
+  return (
+    <QueryStateBarContext.Provider value={[queryStateBarState, (newState: QueryStateBarState) => { setState(newState) }, () => { }]}>
+      {props.children}
+    </QueryStateBarContext.Provider >
+  )
+}
+
+export function Store() {
+  return (
+    <QueryStateBarContextProvider>
       <Box>
         <Box bg="black" p="1em">
           <Text color="white" fontWeight="bold" fontSize="3xl" >Coming soon</Text>
@@ -30,8 +32,9 @@ export class Store extends React.Component<{}, {}> {
           {Items()}
         </SimpleGrid>
         <QueryStateBar />
-      </Box>)
-  }
+      </Box>
+    </QueryStateBarContextProvider>
+  )
 }
 
 // items component does the following:
@@ -39,20 +42,66 @@ export class Store extends React.Component<{}, {}> {
 // - loads more if necessary
 // - if error occurs, notifies errorItem to display, user can trigger load more from here
 function Items() {
-  const [items] = useRecoilState(itemsState)
-  const [queryOptions, setQueryOptions] = useState({ skip: 0, limit: 10 })
-  const loadMoreItems = () => {
-    // TODO: determine when to load more items and do so,
+  const [items, setItems] = useState<Item[]>([]);
+  const [queryStateBarState, setQueryStateBarState] = useContext(QueryStateBarContext);
+
+  const query = gql`
+      query itemsForSale($itemsForSaleInput:ItemsForSaleInput) {
+        itemsForSale(input:$itemsForSaleInput) {
+          _id
+          for_sale
+          img_urls
+          tags
+          times_acquired
+        }
+      }`
+  const variables = {
+    variables: {
+      itemsForSaleInput: {
+        country: "col",
+        asc: true,
+        tags: [
+          "pattern"
+        ],
+        skip: items.length,
+        forSale: false
+      }
+    }
+  }
+  const { loading, error, data, refetch } = useQuery(query, variables);
+
+  if (error) {
+    console.log("error: ", error)
+  } else if (loading) {
+    console.log("loading: ", loading)
+  } else if (data) {
+    console.log("data: ", data)
+    const newItems = Item.parseGraphQLResult(data, "itemsForSale")
+    items.push(...newItems)
+    // setItems()
+  }
+
+  const loadMoreItems = (win: Window, ev: Event) => {
+    console.log("scroll event, body scrollHeight: ", document.body.scrollHeight,
+      ", body clientHeight: ", document.body.clientHeight,
+      ", window innerHeight: ", window.innerHeight)
+    // TODO: determine when to load more items,
     // if 1 tile height away from bottom of page (or 100px for simplicity), load more items
+    const bodyHeight = document.body.scrollHeight;
   }
   // listen to scroll changes to know if need to load more
   useEffect(() => {
     // add event listener
+    // @ts-ignore
     window.addEventListener("scroll", loadMoreItems)
     // cleanup
+    // @ts-ignore
     return () => { window.removeEventListener("scroll", loadMoreItems) }
   })
-  return items.map((item, indx) => (<ItemTile key={item.item_no} indx={indx} item={item} />))
+  return (
+    <Box>
+      {items.map((item, indx) => (<ItemTile key={item.item_no} indx={indx} item={item} />))}
+    </Box>)
 }
 
 // FIXME: where tf will u put loading function????????
@@ -89,15 +138,17 @@ function Items() {
 // - error: message with retry button
 // - idle: nothing, wears invisibility cloak
 function QueryStateBar() {
-  const [state, setErrorItemState] = useRecoilState(queryStateBarState)
-  switch (state) {
+  const [queryStateBarState, _, refetchQueryStateBarQuery] = useContext(QueryStateBarContext)
+  switch (queryStateBarState) {
     case "error": // if error occurs, show message and button that triggers query retry
       return (
         <Flex p="1em" direction="row">
           <Text flex="1">Failed to load, check wifi connection then retry. If not, I probably messed up some code, check back in a couple of days while I fix it.</Text>
-          <Button onClick={() => {/** TODO: call load more from here, also need to hookup query state with QueryStateBarState */ }}>Retry</Button>
-        </Flex>
+          <Button onClick={refetchQueryStateBarQuery}>Retry</Button>
+        </Flex >
       )
+    case "noMoreItems":
+      return (<Box p="1em"><Text>no more items</Text></Box>)
     case "loading": // if loading show loading indicator
       // $$$ eventually make custom css loading animation
       return (<Box p="1em"><Text>loading...</Text></Box>)

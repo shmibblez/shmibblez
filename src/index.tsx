@@ -42,7 +42,8 @@ const theme = extendTheme({
 })
 
 /** graphql client setup **/
-export const APP_ID = "<Your App ID>"; // TODO: load with hosting config variables
+export const APP_ID = "shmibblez-app-cnmrx"; // TODO: load with hosting config variables
+//.
 // Connect to your MongoDB Realm app
 const app = new Realm.App(APP_ID);
 // Gets a valid Realm user access token to authenticate requests
