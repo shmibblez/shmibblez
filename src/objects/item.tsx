@@ -33,7 +33,7 @@ export class Item {
     )
   }
 
-  static parseGraphQLResult(obj: any, functionName: string): Item[] {
+  static parseGQLResult(obj: any, functionName: string): Item[] {
     const items = [];
     for (let item of obj[functionName]) {
       items.push(Item.parseJSON(item))

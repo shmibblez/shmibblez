@@ -4,19 +4,14 @@ import LeftArrow from '../svgs/left_arrow';
 import RightArrow from '../svgs/right_arrow';
 import "../css/store.css"
 import { Item } from '../objects/item';
-import { gql, useQuery } from '@apollo/client';
-import { atom, useRecoilState } from 'recoil';
-
-type QueryState = "loading" | "error" | "noMoreItems" | "idle";
-
-const itemsState = atom<{ items: Item[], queryState: QueryState }>({
-  key: "itemState",
-  default: { items: [], queryState: "idle" }
-})
+import { ApolloError, gql, useQuery } from '@apollo/client';
+import { atom, selector, useRecoilState, useRecoilValue } from 'recoil';
+import { apolloClient } from '..';
 
 export function Store() {
   return (
     <Box>
+      <ItemsLoader />
       <Box bg="black" p="1em">
         <Text color="white" fontWeight="bold" fontSize="3xl">Coming soon</Text>
       </Box>
@@ -33,89 +28,126 @@ export function Store() {
 // - error: message with retry button
 // - idle: nothing, wears invisibility cloak
 function QueryStateBar() {
-  let queryStateBarState = "error";
-  switch (queryStateBarState) {
+  const [state, setState] = useRecoilState(queryState)
+  switch (state) {
     case "error": // if error occurs, show message and button that triggers query retry
       return (
         <Flex p="1em" direction="row" bg="white">
           <Text flex="1">Failed to load, check wifi connection then retry. If not, I probably messed up some code, check back in a couple of days while I fix it.</Text>
-          <Button onClick={() => { }}>Retry</Button>
+          <Button onClick={() => { setState("loading") }}>Retry</Button>
         </Flex >)
     case "noMoreItems":
-      return (<Box p="1em"><Text>no more items</Text></Box>)
+      return (<Box p="1em" bg="white"><Text>no more items</Text></Box>)
     case "loading": // if loading show loading indicator
       // $$$ eventually make custom css loading animation
-      return (<Box p="1em"><Text>loading...</Text></Box>)
-    case "idle": // if idle, don't show 
+      return (<Box p="1em" bg="white"><Text>loading...</Text></Box>)
+    case "doneLoading": // if idle, don't show 
     default:
       return null;
   }
 }
 
+type QueryState = "loading" | "doneLoading" | "error" | "noMoreItems";
+type QueryErrorCode = "unknown" | "maintenance";
+const itemsLoaderState = atom<{ items: Item[], queryState: QueryState, error?: QueryErrorCode }>({
+  key: "itemsLoaderState",
+  default: { items: [], queryState: "loading", }
+})
+const itemsState = selector({
+  key: "itemsState",
+  get: ({ get }) => { return get(itemsLoaderState).items }
+})
+const queryState = selector<any>({
+  key: "queryState",
+  get: ({ get }) => { return get(itemsLoaderState).queryState },
+  set: ({ set, get }, newVal) => { set(itemsLoaderState, { ...get(itemsLoaderState), queryState: newVal }) }
+})
+// loaded as component so can access atom
+// is the only one that will edit itemsLoaderState atom, other components will access data from selectors
 function ItemsLoader() {
-  const [state, setState] = useRecoilState(itemsState)
+  const [state, setState] = useRecoilState(itemsLoaderState)
 
-
-}
-
-// items component does the following:
-// - displays loaded items
-// - loads more if necessary
-// - if error occurs, notifies errorItem to display, user can trigger load more from here
-function Items() {
-  const [items, setItems] = useState<Item[]>([]);
-
-  const query = gql`
-  query itemsForSale($itemsForSaleInput: ItemsForSaleInput) {
-    itemsForSale(input: $itemsForSaleInput) {
-      _id
-      for_sale
-      img_urls
-      tags
-      times_acquired
-      countries {
-        col {
-          price
-          ccy
-          available {
-            total
-            s
-            m
-            l
+  switch (state.queryState) {
+    case "loading": {
+      console.log("query loading")
+      const query = gql`
+      query itemsForSale($itemsForSaleInput: ItemsForSaleInput) {
+        itemsForSale(input: $itemsForSaleInput) {
+          _id
+          for_sale
+          img_urls
+          tags
+          times_acquired
+          countries {
+            col {
+              price
+              ccy
+              available {
+                total
+                s
+                m
+                l
+              }
+            }
+          }
+        }
+      }`
+      const variables = {
+        variables: {
+          itemsForSaleInput: {
+            country: "col",
+            asc: true,
+            tags: [
+              "pattern"
+            ],
+            skip: state.items.length,
+            forSale: false
           }
         }
       }
-    }
-  }`
-  const variables = {
-    variables: {
-      itemsForSaleInput: {
-        country: "col",
-        asc: true,
-        tags: [
-          "pattern"
-        ],
-        skip: items.length,
-        forSale: false
-      }
-    }
-  }
-  const { loading, error, data, previousData, refetch } = useQuery(query, variables);
+      apolloClient.query({ query: query, variables: variables })
+        .then(
+          function onFulfilled(result) {
+            console.log("query fulfilled")
+            if (result.error) {
+              setState({ ...state, queryState: "error", error: "unknown" })
+            } else if (result.errors) {
+              setState({ ...state, queryState: "error", error: "unknown" })
+            } else if (result.data) {
+              const newItems = Item.parseGQLResult(result.data, "itemsForSale")
+              if (newItems.length <= 0) {
+                setState({ ...state, queryState: "noMoreItems" });
+              } else {
+                setState({ ...state, items: state.items.concat(newItems), queryState: "doneLoading" })
+              }
 
-  if (error) {
-    console.log("error: ", error)
-  } else if (loading) {
-    console.log("loading: ", loading)
-  } else if (data && data != previousData) {
-    console.log("data: ", data)
-    const newItems = Item.parseGraphQLResult(data, "itemsForSale")
-    items.push(...newItems)
-  }
+            }
+          },
+          function onRejected(error) {
+            console.log("query rejected, error: ", error)
+            setState({ ...state, queryState: "error", error: "unknown" })
+          }
+        )
+        .catch((e) => {
 
+        })
+      break;
+    }
+    case "error": { break; }
+    case "doneLoading": { break; }
+    case "noMoreItems": { break; }
+  }
+  return (<Box w="0" h="0" />)
+}
+
+// figures out when to request loading more items
+function Items() {
   const loadMoreItems = (win: Window, ev: Event) => {
-    console.log("scroll event, body scrollHeight: ", document.body.scrollHeight,
+    console.log(
+      "scroll event, body scrollHeight: ", document.body.scrollHeight,
       ", body clientHeight: ", document.body.clientHeight,
-      ", window innerHeight: ", window.innerHeight)
+      ", window innerHeight: ", window.innerHeight
+    )
     // TODO: determine when to load more items,
     // if 1 tile height away from bottom of page (or 100px for simplicity), load more items
     const bodyHeight = document.body.scrollHeight;
@@ -129,48 +161,9 @@ function Items() {
     // @ts-ignore
     return () => { window.removeEventListener("scroll", loadMoreItems) }
   })
+  const items = useRecoilValue(itemsState)
   return items.map((item, indx) => (<ItemTile key={item._id} indx={indx} item={item} />))
 }
-
-// FIXME: where tf will u put loading function????????
-// needs to be able to be called from Items and from QueryIndicator components
-// 
-// const [loadItems, { loading, error, data }] = useLazyQuery(gql`
-// query itemsForSale($itemsForSaleInput: ItemsForSaleInput) {
-//   itemsForSale(input: $itemsForSaleInput) {
-//     _id
-//     for_sale
-//     img_urls
-//     tags
-//     times_acquired
-//     countries {
-//       col {
-//         price
-//         ccy
-//         available {
-//           total
-//           s
-//           m
-//           l
-//         }
-//       }
-//     }
-//   }
-// }
-// `,
-// {
-//   variables: {
-//     itemsForSaleInput: {
-//       country: "col",
-//       asc: true,
-//       tags: [
-//         "pattern"
-//       ],
-//       skip: 10,
-//       forSale: false
-//     }
-//   }
-// });
 
 class ItemTile extends React.Component<{ indx: number, item: Item }, { indx: number, item: Item, itemsPerRow: number, imgIndx: number }> {
   constructor(props: { indx: number, item: Item }) {

@@ -61,7 +61,7 @@ async function getValidAccessToken() {
   return app!.currentUser!.accessToken
 }
 // Configure the ApolloClient to connect to your app's GraphQL endpoint
-const gqlClient = new ApolloClient({
+export const apolloClient = new ApolloClient({
   link: new HttpLink({
     uri: `https://realm.mongodb.com/api/client/v2.0/app/${APP_ID}/graphql`,
     // We define a custom fetch handler for the Apollo client that lets us authenticate GraphQL requests.
@@ -84,7 +84,7 @@ export const realmSetup = () => {
 ReactDOM.render(
   <ChakraProvider theme={theme}>
     <React.StrictMode>
-      <ApolloProvider client={gqlClient}>
+      <ApolloProvider client={apolloClient}>
         <RecoilRoot>
           <App />
         </RecoilRoot>
