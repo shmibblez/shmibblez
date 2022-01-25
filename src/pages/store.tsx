@@ -1,40 +1,61 @@
 import { Box, Button, Flex, SimpleGrid, Text } from '@chakra-ui/react';
-import React, { ReactElement, useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LeftArrow from '../svgs/left_arrow';
 import RightArrow from '../svgs/right_arrow';
 import "../css/store.css"
 import { Item } from '../objects/item';
-import { gql, useLazyQuery, useQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 import { atom, useRecoilState } from 'recoil';
 
-type QueryStateBarState = "loading" | "error" | "noMoreItems" | "idle";
-type SetQueryStateBarState = (newState: QueryStateBarState) => void;
-type RefetchQueryStateBarQuery = () => void;
-const QueryStateBarContext = React.createContext<[QueryStateBarState, SetQueryStateBarState, RefetchQueryStateBarQuery]>(["idle", () => { }, () => { }])
+type QueryState = "loading" | "error" | "noMoreItems" | "idle";
 
-const QueryStateBarContextProvider = (props: { children: ReactElement }) => {
-  const [queryStateBarState, setState] = useState<QueryStateBarState>("idle")
-  return (
-    <QueryStateBarContext.Provider value={[queryStateBarState, (newState: QueryStateBarState) => { setState(newState) }, () => { }]}>
-      {props.children}
-    </QueryStateBarContext.Provider >
-  )
-}
+const itemsState = atom<{ items: Item[], queryState: QueryState }>({
+  key: "itemState",
+  default: { items: [], queryState: "idle" }
+})
 
 export function Store() {
   return (
-    <QueryStateBarContextProvider>
-      <Box>
-        <Box bg="black" p="1em">
-          <Text color="white" fontWeight="bold" fontSize="3xl">Coming soon</Text>
-        </Box>
-        <SimpleGrid minChildWidth="400px" id="storeGrid">
-          {Items()}
-        </SimpleGrid>
-        <QueryStateBar />
+    <Box>
+      <Box bg="black" p="1em">
+        <Text color="white" fontWeight="bold" fontSize="3xl">Coming soon</Text>
       </Box>
-    </QueryStateBarContextProvider>
+      <SimpleGrid minChildWidth="400px" id="storeGrid">
+        {Items()}
+      </SimpleGrid>
+      <QueryStateBar />
+    </Box>
   )
+}
+
+// shows indicators depending on query state:
+// - loading: progress bar
+// - error: message with retry button
+// - idle: nothing, wears invisibility cloak
+function QueryStateBar() {
+  let queryStateBarState = "error";
+  switch (queryStateBarState) {
+    case "error": // if error occurs, show message and button that triggers query retry
+      return (
+        <Flex p="1em" direction="row" bg="white">
+          <Text flex="1">Failed to load, check wifi connection then retry. If not, I probably messed up some code, check back in a couple of days while I fix it.</Text>
+          <Button onClick={() => { }}>Retry</Button>
+        </Flex >)
+    case "noMoreItems":
+      return (<Box p="1em"><Text>no more items</Text></Box>)
+    case "loading": // if loading show loading indicator
+      // $$$ eventually make custom css loading animation
+      return (<Box p="1em"><Text>loading...</Text></Box>)
+    case "idle": // if idle, don't show 
+    default:
+      return null;
+  }
+}
+
+function ItemsLoader() {
+  const [state, setState] = useRecoilState(itemsState)
+
+
 }
 
 // items component does the following:
@@ -43,7 +64,6 @@ export function Store() {
 // - if error occurs, notifies errorItem to display, user can trigger load more from here
 function Items() {
   const [items, setItems] = useState<Item[]>([]);
-  const [queryStateBarState, setQueryStateBarState] = useContext(QueryStateBarContext);
 
   const query = gql`
   query itemsForSale($itemsForSaleInput: ItemsForSaleInput) {
@@ -151,32 +171,6 @@ function Items() {
 //     }
 //   }
 // });
-
-//.
-// shows indicators depending on query state:
-// - loading: progress bar
-// - error: message with retry button
-// - idle: nothing, wears invisibility cloak
-function QueryStateBar() {
-  const [queryStateBarState, _, refetchQueryStateBarQuery] = useContext(QueryStateBarContext)
-  switch (queryStateBarState) {
-    case "error": // if error occurs, show message and button that triggers query retry
-      return (
-        <Flex p="1em" direction="row">
-          <Text flex="1">Failed to load, check wifi connection then retry. If not, I probably messed up some code, check back in a couple of days while I fix it.</Text>
-          <Button onClick={refetchQueryStateBarQuery}>Retry</Button>
-        </Flex >
-      )
-    case "noMoreItems":
-      return (<Box p="1em"><Text>no more items</Text></Box>)
-    case "loading": // if loading show loading indicator
-      // $$$ eventually make custom css loading animation
-      return (<Box p="1em"><Text>loading...</Text></Box>)
-    case "idle": // if idle, don't show 
-    default:
-      return null;
-  }
-}
 
 class ItemTile extends React.Component<{ indx: number, item: Item }, { indx: number, item: Item, itemsPerRow: number, imgIndx: number }> {
   constructor(props: { indx: number, item: Item }) {
