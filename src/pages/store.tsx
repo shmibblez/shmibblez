@@ -68,6 +68,8 @@ function ItemsLoader() {
   const [state, setState] = useRecoilState(itemsLoaderState)
 
   switch (state.queryState) {
+    // FIXME: not working for some reason, this is error:
+    // rejected, error:  Error: TypeError: Cannot access member 'country' of undefined
     case "loading": {
       console.log("query loading")
       const query = gql`
@@ -93,19 +95,17 @@ function ItemsLoader() {
         }
       }`
       const variables = {
-        variables: {
-          itemsForSaleInput: {
-            country: "col",
-            asc: true,
-            tags: [
-              "pattern"
-            ],
-            skip: state.items.length,
-            forSale: false
-          }
+        itemsForSaleInput: {
+          country: "col",
+          asc: true,
+          tags: [
+            "pattern"
+          ],
+          skip: state.items.length,
+          forSale: false
         }
       }
-      apolloClient.query({ query: query, variables: variables })
+      apolloClient.query({ query: query, variables: variables, })
         .then(
           function onFulfilled(result) {
             console.log("query fulfilled")
