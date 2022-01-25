@@ -26,7 +26,7 @@ export function Store() {
     <QueryStateBarContextProvider>
       <Box>
         <Box bg="black" p="1em">
-          <Text color="white" fontWeight="bold" fontSize="3xl" >Coming soon</Text>
+          <Text color="white" fontWeight="bold" fontSize="3xl">Coming soon</Text>
         </Box>
         <SimpleGrid minChildWidth="400px" id="storeGrid">
           {Items()}
@@ -109,10 +109,7 @@ function Items() {
     // @ts-ignore
     return () => { window.removeEventListener("scroll", loadMoreItems) }
   })
-  return (
-    <Box>
-      {items.map((item, indx) => (<ItemTile key={item._id} indx={indx} item={item} />))}
-    </Box>)
+  return items.map((item, indx) => (<ItemTile key={item._id} indx={indx} item={item} />))
 }
 
 // FIXME: where tf will u put loading function????????
@@ -215,7 +212,7 @@ class ItemTile extends React.Component<{ indx: number, item: Item }, { indx: num
     const textColor = "white" //reversed ? (isOdd(props.indx) ? "black" : "white") : (isOdd(props.indx) ? "white" : "black")
     const subTextColor = "gray" //reversed ? (isOdd(props.indx) ? "black" : "gray") : (isOdd(props.indx) ? "gray" : "black")
     return (
-      <Box id="item" p="1em" background={bgColor}>
+      <Box id="item" p="1em" background={bgColor} >
         <Box transform="rotate(0deg)" display="block" bg="transparent" border="1px solid" borderColor="gray" style={{ aspectRatio: "1" }} bgImage={this.state.item.img_urls[this.state.imgIndx]} bgSize="cover" bgPos="center">
           {/* arrows */}
           <Flex id="arrows" pos="absolute" top="0" left="0" width="100%" height="100%" flexDirection="row" alignItems="center" justifyContent="space-between">
