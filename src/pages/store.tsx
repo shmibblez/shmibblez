@@ -46,15 +46,27 @@ function Items() {
   const [queryStateBarState, setQueryStateBarState] = useContext(QueryStateBarContext);
 
   const query = gql`
-      query itemsForSale($itemsForSaleInput:ItemsForSaleInput) {
-        itemsForSale(input:$itemsForSaleInput) {
-          _id
-          for_sale
-          img_urls
-          tags
-          times_acquired
+  query itemsForSale($itemsForSaleInput: ItemsForSaleInput) {
+    itemsForSale(input: $itemsForSaleInput) {
+      _id
+      for_sale
+      img_urls
+      tags
+      times_acquired
+      countries {
+        col {
+          price
+          ccy
+          available {
+            total
+            s
+            m
+            l
+          }
         }
-      }`
+      }
+    }
+  }`
   const variables = {
     variables: {
       itemsForSaleInput: {
@@ -68,17 +80,16 @@ function Items() {
       }
     }
   }
-  const { loading, error, data, refetch } = useQuery(query, variables);
+  const { loading, error, data, previousData, refetch } = useQuery(query, variables);
 
   if (error) {
     console.log("error: ", error)
   } else if (loading) {
     console.log("loading: ", loading)
-  } else if (data) {
+  } else if (data && data != previousData) {
     console.log("data: ", data)
     const newItems = Item.parseGraphQLResult(data, "itemsForSale")
     items.push(...newItems)
-    // setItems()
   }
 
   const loadMoreItems = (win: Window, ev: Event) => {
@@ -100,7 +111,7 @@ function Items() {
   })
   return (
     <Box>
-      {items.map((item, indx) => (<ItemTile key={item.item_no} indx={indx} item={item} />))}
+      {items.map((item, indx) => (<ItemTile key={item._id} indx={indx} item={item} />))}
     </Box>)
 }
 
@@ -108,15 +119,27 @@ function Items() {
 // needs to be able to be called from Items and from QueryIndicator components
 // 
 // const [loadItems, { loading, error, data }] = useLazyQuery(gql`
-//   query itemsForSale($itemsForSaleInput:ItemsForSaleInput) {
-//     itemsForSale(input:$itemsForSaleInput) {
-//       _id
-//       for_sale
-//       img_urls
-//       tags
-//       times_acquired
+// query itemsForSale($itemsForSaleInput: ItemsForSaleInput) {
+//   itemsForSale(input: $itemsForSaleInput) {
+//     _id
+//     for_sale
+//     img_urls
+//     tags
+//     times_acquired
+//     countries {
+//       col {
+//         price
+//         ccy
+//         available {
+//           total
+//           s
+//           m
+//           l
+//         }
+//       }
 //     }
 //   }
+// }
 // `,
 // {
 //   variables: {
@@ -200,7 +223,7 @@ class ItemTile extends React.Component<{ indx: number, item: Item }, { indx: num
             <Flex onClick={this.rightArrowClick} width="20%" height="100%" p="5%" alignItems="center"><RightArrow stroke="white" /></Flex>
           </Flex>
         </Box>
-        <Text color={subTextColor} fontSize="sm" as="i" fontWeight="bold">item #{this.state.item.item_no}</Text>
+        <Text color={subTextColor} fontSize="sm" as="i" fontWeight="bold">item #{this.state.item._id}</Text>
         <Text color={textColor} fontWeight="bold">price: ${this.state.item.price},00 COP</Text>
       </Box>
     )

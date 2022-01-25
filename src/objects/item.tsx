@@ -1,12 +1,12 @@
 export class Item {
-  item_no: number;
+  _id: number;
   price: number
   img_urls: string[]
   tags: string[]
   times_acquired: number;
 
-  constructor(item_no: number, price: number, img_urls: string[], tags: string[], times_acquired: number) {
-    this.item_no = item_no
+  constructor(_id: number, price: number, img_urls: string[], tags: string[], times_acquired: number) {
+    this._id = _id
     this.price = price
     this.img_urls = img_urls
     this.tags = tags
@@ -24,20 +24,18 @@ export class Item {
   }
 
   static parseJSON(json: any): Item {
-    const prop = (p: string) => json[p]
     return new Item(
-      prop("_id"),
-      prop("price"),
-      prop("img_urls"),
-      prop("tags"),
-      prop("times_acquired")
+      json._id,
+      json.countries.col.price,
+      json.img_urls,
+      json.tags,
+      json.times_acquired
     )
   }
 
-  static parseGraphQLResult(jsonResult: any, functionName: string): Item[] {
-    console.log("parsed json: ", jsonResult)
+  static parseGraphQLResult(obj: any, functionName: string): Item[] {
     const items = [];
-    for (let item in jsonResult[functionName]) {
+    for (let item of obj[functionName]) {
       items.push(Item.parseJSON(item))
     }
     return items
