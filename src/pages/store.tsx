@@ -6,7 +6,7 @@ import "../css/store.css"
 import { Item } from '../objects/item';
 import { gql } from '@apollo/client';
 import { atom, selector, useRecoilState, useRecoilValue } from 'recoil';
-import { apolloClient } from '..';
+import { apolloClient, isTouchscreen } from '..';
 
 export function Store() {
   return (
@@ -17,7 +17,7 @@ export function Store() {
         <Box display="inline-block" width="0.25em" />
         <Text display="inline-block" color="white" fontSize="xs">.........there will be shirts here one day</Text>
       </Box>
-      <SimpleGrid minChildWidth="400px" id="storeGrid" border="1px solid white">
+      <SimpleGrid minChildWidth={{ base: "auto", sm: "400px" }} id="storeGrid" border="1px solid white">
         {Items()}
       </SimpleGrid>
       <QueryStateBar />
@@ -62,7 +62,13 @@ const itemsState = selector({
 const queryState = selector<any>({
   key: "queryState",
   get: ({ get }) => { return get(itemsLoaderState).queryState },
-  set: ({ set, get }, newVal) => { set(itemsLoaderState, { ...get(itemsLoaderState), queryState: newVal }) }
+  set: ({ set, get }, newVal) => {
+    const itemsLoader = get(itemsLoaderState)
+    // if query state changed and has more items, change query state
+    // prevents unecessary reloads
+    if (itemsLoader.queryState != newVal && itemsLoader.queryState != "noMoreItems")
+      set(itemsLoaderState, { ...itemsLoader, queryState: newVal })
+  }
 })
 // loaded as component so can access atom
 // is the only one that will edit itemsLoaderState atom, other components will access data from selectors
@@ -70,8 +76,6 @@ function ItemsLoader() {
   const [state, setState] = useRecoilState(itemsLoaderState)
 
   switch (state.queryState) {
-    // FIXME: not working for some reason, this is error:
-    // rejected, error:  Error: TypeError: Cannot access member 'country' of undefined
     case "loading": {
       console.log("query loading")
       const query = gql`
@@ -110,19 +114,20 @@ function ItemsLoader() {
       apolloClient.query({ query: query, variables: variables, })
         .then(
           function onFulfilled(result) {
-            console.log("query fulfilled")
             if (result.error) {
+              console.log("-- error")
               setState({ ...state, queryState: "error", error: "unknown" })
             } else if (result.errors) {
+              console.log("-- errors")
               setState({ ...state, queryState: "error", error: "unknown" })
             } else if (result.data) {
               const newItems = Item.parseGQLResult(result.data, "itemsForSale")
+              console.log("-- data length: ", newItems.length)
               if (newItems.length <= 0) {
                 setState({ ...state, queryState: "noMoreItems" });
               } else {
                 setState({ ...state, items: state.items.concat(newItems), queryState: "doneLoading" })
               }
-
             }
           },
           function onRejected(error) {
@@ -144,13 +149,14 @@ function ItemsLoader() {
 
 // figures out when to request loading more items
 function Items() {
+  const [_, setQueryState] = useRecoilState(queryState)
+
   const loadMoreItems = (win: Window, ev: Event) => {
-    // TODO: determine when to load more items,
-    // if 1 tile height away from bottom of page (or 100px for simplicity), load more items
     const bodyHeight = document.body.scrollHeight;
     const currentOffset = window.innerHeight + window.scrollY
     if (currentOffset > bodyHeight - 1) {
       console.log("reached bottom")
+      setQueryState("loading")
     }
   }
   // listen to scroll changes to know if need to load more
@@ -163,6 +169,7 @@ function Items() {
     return () => { window.removeEventListener("scroll", loadMoreItems) }
   })
   const items = useRecoilValue(itemsState)
+  console.log("Items rendering, items length: ", items.length)
   return items.map((item, indx) => (<ItemTile key={item._id} indx={indx} item={item} />))
 }
 
@@ -208,7 +215,7 @@ class ItemTile extends React.Component<{ indx: number, item: Item }, { indx: num
       <Box id="item" p="2em" background={bgColor} border="2px solid white">
         <Box transform="rotate(0deg)" display="block" bg="transparent" style={{ aspectRatio: "1" }} bgImage={placeholderURLs[this.state.imgIndx] /* load item url: this.state.item.img_urls[this.state.imgIndx] */} bgSize="cover" bgPos="center">
           {/* arrows */}
-          <Flex id="arrows" pos="absolute" top="0" left="0" width="100%" height="100%" flexDirection="row" alignItems="center" justifyContent="space-between">
+          <Flex id="arrows" className={isTouchscreen() ? "is-touchscreen" : ""} pos="absolute" top="0" left="0" width="100%" height="100%" flexDirection="row" alignItems="center" justifyContent="space-between">
             <Flex onClick={this.leftArrowClick} width="20%" height="30%" p="5%" alignItems="center"><LeftArrow stroke="white" /></Flex>
             <Flex onClick={this.rightArrowClick} width="20%" height="30%" p="5%" alignItems="center"><RightArrow stroke="white" /></Flex>
           </Flex>

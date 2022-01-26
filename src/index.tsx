@@ -12,6 +12,8 @@ import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from "@apollo/c
 document.body.style.height = "100%"
 document.body.style.backgroundColor = "black"
 
+export const isTouchscreen = () => { return window.matchMedia("(pointer: coarse)").matches }
+
 /** chakra setup **/
 const theme = extendTheme({
   components: {
@@ -42,7 +44,7 @@ const theme = extendTheme({
 })
 
 /** graphql client setup **/
-export const APP_ID = "shmibblez-app-cnmrx"; // TODO: load with hosting config variables
+export const APP_ID = "shmibblez-app-cnmrx"; // FIXME: load with hosting config variables
 //.
 // Connect to your MongoDB Realm app
 const app = new Realm.App(APP_ID);

@@ -8,10 +8,6 @@ import { Store } from './pages/store';
 import { Cart } from './pages/cart';
 
 // TODO: custom resolver, rename from itemsForSale to itemsCustom (better describes filter)
-
-// TODO: move setup to redux on app start (async) and depending on state show loading in store and cart
-
-
 function App() {
   return (
     <Box>
