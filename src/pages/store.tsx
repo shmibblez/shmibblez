@@ -155,8 +155,8 @@ function Items() {
     const bodyHeight = document.body.scrollHeight;
     const currentOffset = window.innerHeight + window.scrollY
     // the amount of space between currentOffset and bottom of page before loading more
-    const tolerance = window.innerHeight / 2; // px
-    if (currentOffset > bodyHeight - 1 - tolerance) {
+    const threshold = window.innerHeight / 2; // px
+    if (currentOffset > bodyHeight - 1 - threshold) {
       console.log("reached bottom")
       setQueryState("loading")
     }
