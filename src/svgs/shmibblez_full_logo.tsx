@@ -6,7 +6,7 @@ const ShmibblezFullLogo = (props: React.SVGProps<SVGSVGElement>) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="-6 -6 110 129"
-    strokeWidth={3}
+    strokeWidth={2}
     strokeLinecap="round"
     strokeLinejoin="round"
     {...props}
