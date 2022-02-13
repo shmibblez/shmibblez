@@ -213,7 +213,7 @@ class ItemTile extends React.Component<{ indx: number, item: Item }, { indx: num
     const subTextColor = "gray" //reversed ? (isOdd(props.indx) ? "black" : "gray") : (isOdd(props.indx) ? "gray" : "black")
     return (
       <Box id="item" p="2em" background={bgColor} border="2px solid white">
-        <Box transform="rotate(0deg)" display="block" bg="transparent" style={{ aspectRatio: "1" }} bgImage={placeholderURLs[this.state.imgIndx] /* load item url: this.state.item.img_urls[this.state.imgIndx] */} bgSize="cover" bgPos="center">
+        <Box transform="rotate(0deg)" display="block" bg="transparent" paddingTop="100%" bgImage={placeholderURLs[this.state.imgIndx] /* load item url: this.state.item.img_urls[this.state.imgIndx] */} bgSize="cover" bgPos="center">
           {/* arrows */}
           <Flex id="arrows" className={isTouchscreen() ? "is-touchscreen" : ""} pos="absolute" top="0" left="0" width="100%" height="100%" flexDirection="row" alignItems="center" justifyContent="space-between">
             <Flex onClick={this.leftArrowClick} width="20%" height="30%" p="5%" alignItems="center"><LeftArrow stroke="white" /></Flex>

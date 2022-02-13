@@ -25,7 +25,9 @@ export const Home = (props: {}) => {
 function Project(props: { img: string, name: string, desc: string }) {
   return (
     <Box {...props} bg="#000" p="1em">
-      <img src={props.img} width="100%" style={{ aspectRatio: "1" }} />
+      <Box width="100%" paddingTop="100%" transform="rotate(0)">
+        <img src={props.img} style={{ position: "absolute", left: 0, top: 0, width: "100%" }}></img>
+      </Box>
       <Text fontSize="xl" fontWeight="bold" color="white">{props.name}</Text>
       <Text fontSize="md" color="white">{props.desc}</Text>
     </Box>);

@@ -33,7 +33,9 @@ function App() {
 export default App;
 
 function Logos(props: React.HTMLAttributes<HTMLDivElement>) {
-  return (<div {...props} style={{ aspectRatio: "5/6", height: "150px", backgroundColor: "red", ...props.style }}>
+  // aspect ratio = 5/6
+  const height = 150;
+  return (<div {...props} style={{ ...props.style, height: `${height}px`, width: `${height * 5 / 6}px`, backgroundColor: "red" }}>
     <Shmibblogo width="100%" />
     <ShmibblezTextLogo width="100%" />
   </div>)
