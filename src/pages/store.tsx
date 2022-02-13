@@ -154,18 +154,18 @@ function Items() {
   const loadMoreItems = (win: Window, ev: Event) => {
     const bodyHeight = document.body.scrollHeight;
     const currentOffset = window.innerHeight + window.scrollY
-    if (currentOffset > bodyHeight - 1) {
+    // the amount of space between currentOffset and bottom of page before loading more
+    const tolerance = window.innerHeight / 2; // px
+    if (currentOffset > bodyHeight - 1 - tolerance) {
       console.log("reached bottom")
       setQueryState("loading")
     }
   }
   // listen to scroll changes to know if need to load more
   useEffect(() => {
-    // add event listener
-    // @ts-ignore
+    // @ts-ignore, add event listener
     window.addEventListener("scroll", loadMoreItems)
-    // cleanup
-    // @ts-ignore
+    // @ts-ignore, cleanup
     return () => { window.removeEventListener("scroll", loadMoreItems) }
   })
   const items = useRecoilValue(itemsState)
@@ -200,6 +200,7 @@ class ItemTile extends React.Component<{ indx: number, item: Item }, { indx: num
   }
   onResize = () => {
     const grid = document.getElementById("storeGrid")!
+    // cell color depends on how many columns there are
     this.setState({ itemsPerRow: getComputedStyle(grid).getPropertyValue("grid-template-columns").split(" ").length })
   }
   render(): React.ReactNode {
