@@ -3,8 +3,8 @@ import './css/App.css';
 import { Box, Tabs, TabList, Tab, TabPanels, TabPanel, Flex } from '@chakra-ui/react';
 import Shmibblogo from './svgs/shmibblez_logo';
 import ShmibblezTextLogo from './svgs/shmibblez_text_logo';
+import { Dev } from './pages/dev';
 import { Home } from './pages/home';
-import { Store } from './pages/store';
 import { Cart } from './pages/cart';
 
 // TODO: custom resolver, rename from itemsForSale to itemsCustom (better describes filter)
@@ -16,13 +16,13 @@ function App() {
           <Logos style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", padding: "8px" }} />
           <TabList flex="1" justifyContent="space-evenly" flexDirection={{ base: "column", sm: "row" }} bg="black" color="white">
             <Tab flex="1">HOME</Tab>
-            <Tab flex="1">STORE</Tab>
+            <Tab flex="1">DEV</Tab>
             <Tab flex="1">CART</Tab>
           </TabList>
         </Flex>
         <TabPanels>
           <TabPanel><Home /></TabPanel>
-          <TabPanel><Store /></TabPanel>
+          <TabPanel><Dev /></TabPanel>
           <TabPanel><Cart /></TabPanel>
         </TabPanels>
       </Tabs>
