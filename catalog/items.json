@@ -1,703 +1,1559 @@
-{
+
+ {
   "_id": 1,
   "for_sale": true,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 2,
   "for_sale": true,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 3,
   "for_sale": true,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 4,
   "for_sale": true,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 5,
   "for_sale": true,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 6,
   "for_sale": false,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 7,
   "for_sale": false,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 8,
   "for_sale": false,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 9,
   "for_sale": false,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 10,
   "for_sale": false,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 11,
   "for_sale": false,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 12,
   "for_sale": false,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 13,
   "for_sale": false,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 14,
   "for_sale": false,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 15,
   "for_sale": false,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 16,
   "for_sale": false,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 17,
   "for_sale": false,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 18,
   "for_sale": false,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
-{
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }
+ {
   "_id": 19,
   "for_sale": false,
   "countries": {
-    "col": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 40000.0,
-      "ccy": "cop"
+   "col": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
     },
-    "usa": {
-      "available": {
-        "total": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0
-      },
-      "price": 25.0,
-      "ccy": "usd"
-    }
+    "price": 40000.0,
+    "ccy": "cop"
+   },
+   "usa": {
+    "available": {
+     "red": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     },
+     "black": {
+      "s": 0,
+      "m": 0,
+      "l": 0,
+      "t": 0
+     }
+    },
+    "price": 20,
+    "ccy": "usd"
+   }
   },
   "img_urls": [
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/pot-mussels.jpg",
-    "https:\/\/res.cloudinary.com\/shmibblez\/image\/upload\/v1642618044\/samples\/food\/fish-vegetables.jpg"
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg",
+   "https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg"
   ],
   "tags": [
-    "t-shirt",
-    "black",
-    "optical illusion",
-    "pattern"
+   "t-shirt",
+   "black",
+   "optical illusion",
+   "pattern"
   ],
-  "times_acquired": 0
-}
+  "times_acquired": {
+   "col": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   },
+   "usa": {
+    "red": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    },
+    "black": {
+     "s": 0,
+     "m": 0,
+     "l": 0,
+     "t": 0
+    }
+   }
+  }
+ }

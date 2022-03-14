@@ -66,7 +66,7 @@ const queryState = selector<any>({
     const itemsLoader = get(itemsLoaderState)
     // if query state changed and has more items, change query state
     // prevents unecessary reloads
-    if (itemsLoader.queryState != newVal && itemsLoader.queryState != "noMoreItems")
+    if (itemsLoader.queryState !== newVal && itemsLoader.queryState !== "noMoreItems")
       set(itemsLoaderState, { ...itemsLoader, queryState: newVal })
   }
 })
@@ -85,16 +85,71 @@ function ItemsLoader() {
           for_sale
           img_urls
           tags
-          times_acquired
           countries {
             col {
               price
               ccy
               available {
-                total
+                red {
+                  s
+                  m
+                  l
+                  t
+                }
+                black {
+                  s
+                  m
+                  l
+                  t
+                }
+              }
+            }
+            usa {
+              price
+              ccy
+              available {
+                red {
+                  s
+                  m
+                  l
+                  t
+                }
+                black {
+                  s
+                  m
+                  l
+                  t
+                }
+              }
+            }
+          }
+          times_acquired {
+            col {
+              red {
                 s
                 m
                 l
+                t
+              }
+              black {
+                s
+                m
+                l
+                t
+              }
+            }
+            usa {
+              red {
+                s
+                m
+                l
+                t
+              }
+              black {
+                s
+                m
+                l
+                t
               }
             }
           }
@@ -149,7 +204,7 @@ function ItemsLoader() {
 
 // figures out when to request loading more items
 function Items() {
-  const [_, setQueryState] = useRecoilState(queryState)
+  const [, setQueryState] = useRecoilState(queryState)
 
   const loadMoreItems = (win: Window, ev: Event) => {
     const bodyHeight = document.body.scrollHeight;

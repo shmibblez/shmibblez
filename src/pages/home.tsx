@@ -1,7 +1,7 @@
 import { Box, SimpleGrid, Text } from '@chakra-ui/react';
 import React from 'react';
 
-import shmibblezLogo from "../pics/shmibblez_logo.png"
+// import shmibblezLogo from "../pics/shmibblez_logo.png"
 import shmetronomeLogo from "../pics/shmetronome_logo.png"
 
 export const Home = (props: {}) => {
@@ -26,7 +26,7 @@ function Project(props: { img: string, name: string, desc: string }) {
   return (
     <Box {...props} bg="#000" p="1em">
       <Box width="100%" paddingTop="100%" transform="rotate(0)">
-        <img src={props.img} style={{ position: "absolute", left: 0, top: 0, width: "100%" }}></img>
+        <img src={props.img} style={{ position: "absolute", left: 0, top: 0, width: "100%" }} alt="epic pic here"></img>
       </Box>
       <Text fontSize="xl" fontWeight="bold" color="white">{props.name}</Text>
       <Text fontSize="md" color="white">{props.desc}</Text>

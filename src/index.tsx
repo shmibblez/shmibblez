@@ -4,7 +4,7 @@ import './css/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
-import { atom, RecoilRoot, useRecoilState } from 'recoil';
+import { RecoilRoot } from 'recoil';
 import * as Realm from "realm-web";
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from "@apollo/client";
 
