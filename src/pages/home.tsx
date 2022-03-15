@@ -8,6 +8,13 @@ import { atom, selector, useRecoilState, useRecoilValue } from 'recoil';
 import { apolloClient, isTouchscreen } from '..';
 import { itemsForSaleQuery } from '../gql_queries';
 
+// TODO: add popup container that shows products when they're clicked on
+// popup should cover whole page with borders that are transparent but 
+// darken page behind, it should appear to be floating
+// popup will show product info in more detail, and will allow adding product
+// to cart, selecting sizes, colors, etc (and seeing how many of each already 
+// in cart)
+
 export function Home() {
   return (
     <Box>

@@ -4,32 +4,42 @@ export class Item {
   img_urls: string[]
   tags: string[]
   times_acquired: number;
+  availability: {}
 
-  constructor(_id: number, price: number, img_urls: string[], tags: string[], times_acquired: number) {
+  constructor({
+    _id, price, img_urls, tags, times_acquired, availability,
+  }: { _id: number, price: number, img_urls: string[], tags: string[], times_acquired: number, availability: {} }) {
     this._id = _id
     this.price = price
     this.img_urls = img_urls
     this.tags = tags
     this.times_acquired = times_acquired
+    this.availability = availability
   }
 
   static random() {
     return new Item(
-      Math.trunc(Math.random() * 100),
-      40000,
-      [`https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg`, `https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg`],
-      ["t-shirt", "black", "optical illusion", "pattern"],
-      Math.trunc(Math.random() * 50),
+      {
+        _id: Math.trunc(Math.random() * 100),
+        price: 40000,
+        img_urls: [`https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/pot-mussels.jpg`, `https://res.cloudinary.com/shmibblez/image/upload/v1642618044/samples/food/fish-vegetables.jpg`],
+        tags: ["t-shirt", "black", "optical illusion", "pattern"],
+        times_acquired: Math.trunc(Math.random() * 50),
+        availability: {}
+      }
     )
   }
 
   static parseJSON(json: any): Item {
     return new Item(
-      json._id,
-      json.countries.col.price,
-      json.img_urls,
-      json.tags,
-      json.times_acquired
+      {
+        _id: json._id,
+        price: json.countries.col.price,
+        img_urls: json.img_urls,
+        tags: json.tags,
+        times_acquired: json.times_acquired,
+        availability: json.availability
+      }
     )
   }
 

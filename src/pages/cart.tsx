@@ -1,5 +1,14 @@
 import { Box, Text } from '@chakra-ui/react';
-import React from 'react';
+
+import { atom } from "recoil";
+import { Item } from '../objects/item';
+
+/// the cart stores all the items someone's planning on buying
+export const cartState = atom<Item[]>({
+  key: "cartState",
+  default: [],
+})
+
 
 export const Cart = () => {
   return (

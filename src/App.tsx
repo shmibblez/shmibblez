@@ -6,11 +6,14 @@ import ShmibblezTextLogo from './svgs/shmibblez_text_logo';
 import { Dev } from './pages/dev';
 import { Home } from './pages/home';
 import { Cart } from './pages/cart';
+import { ItemBox } from './pages/item_box';
 
 // TODO: custom resolver, rename from itemsForSale to itemsCustom (better describes filter)
 function App() {
   return (
     <Box>
+      {/* ItemBox shows item info */}
+      <ItemBox />
       <Tabs variant="line" isLazy>
         <Flex direction="row">
           <Logos style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", padding: "8px" }} />
