@@ -1,11 +1,9 @@
 import { Box, Button, Flex, SimpleGrid, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import LeftArrow from '../svgs/left_arrow';
-import RightArrow from '../svgs/right_arrow';
 import "../css/store.css"
 import { Item } from '../objects/item';
 import { atom, selector, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { apolloClient, isTouchscreen } from '..';
+import { apolloClient } from '..';
 import { itemsForSaleQuery } from '../gql_queries';
 import { activeItemState } from './item_box';
 import { ItemImages } from '../components/itemImages';
