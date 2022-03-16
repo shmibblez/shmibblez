@@ -1,12 +1,13 @@
 import { Box, Button, Flex, SimpleGrid, Text } from '@chakra-ui/react';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import LeftArrow from '../svgs/left_arrow';
 import RightArrow from '../svgs/right_arrow';
 import "../css/store.css"
 import { Item } from '../objects/item';
-import { atom, selector, useRecoilState, useRecoilValue } from 'recoil';
+import { atom, selector, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { apolloClient, isTouchscreen } from '..';
 import { itemsForSaleQuery } from '../gql_queries';
+import { activeItemState } from './item_box';
 
 // TODO: add popup container that shows products when they're clicked on
 // popup should cover whole page with borders that are transparent but 
@@ -165,65 +166,66 @@ const placeholderURLs = [
   `url("data:image/svg+xml,%3Csvg stroke-linejoin='bevel' stroke-linecap='square' stroke-width='.55' stroke='%23FFF' fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 -22 49 49'%3E%3Cpath d='M.5 4.5h4l-4-4h4m2 0v4m0-2h4m0 2v-4m2 4v-4l2 2 2-2v4m2 0v-4m2 0v4h2l2-1-2-1 2-1-2-1h-2m0 2h2m4-2v4h2l2-1-2-1 2-1-2-1h-2m0 2h2m4-2v4h4m2-2h4m0 2h-4v-4h4m2 0h4l-4 4h4'/%3E%3C/svg%3E")`
 ]
 
-class ItemTile extends React.Component<{ indx: number, item: Item }, { indx: number, item: Item, itemsPerRow: number, imgIndx: number }> {
-  constructor(props: { indx: number, item: Item }) {
-    super(props)
-    this.state = {
+const ItemTile = (props: { indx: number, item: Item }) => {
+  const [state, setState] = useState<{ indx: number, item: Item, itemsPerRow: number, imgIndx: number }>(
+    {
       indx: props.indx, // index of item in grid
       item: props.item,
       itemsPerRow: -1, // items per row, for figuring out if row colors reversed
       imgIndx: 0, // index of currently displayed image
     }
-    // this.onResize.bind(this)
-    this.leftArrowClick = this.leftArrowClick.bind(this)
-    this.rightArrowClick = this.rightArrowClick.bind(this)
-  }
-  componentDidMount() {
-    window.addEventListener("resize", this.onResize)
-    this.onResize()
-  }
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.onResize)
-  }
-  onResize = () => {
-    const grid = document.getElementById("storeGrid")!
-    // cell color depends on how many columns there are
-    this.setState({ itemsPerRow: getComputedStyle(grid).getPropertyValue("grid-template-columns").split(" ").length })
-  }
-  render(): React.ReactNode {
-    // start at opposite color if number of rows odd and column number is odd
-    const isOdd = (n: number) => { return n % 2 === 1 }
-    const isEven = (n: number) => { return !isOdd(n) }
-    const colNum = Math.trunc(this.state.indx / this.state.itemsPerRow)
-    const reversed = isEven(this.state.itemsPerRow) && isOdd(colNum)
-    const bgColor = reversed ? (isOdd(this.state.indx) ? "red" : "black") : (isOdd(this.state.indx) ? "black" : "red")
-    const textColor = "white" //reversed ? (isOdd(props.indx) ? "black" : "white") : (isOdd(props.indx) ? "white" : "black")
-    const subTextColor = "gray" //reversed ? (isOdd(props.indx) ? "black" : "gray") : (isOdd(props.indx) ? "gray" : "black")
-    return (
-      <Box id="item" p="2em" background={bgColor} border="2px solid white">
-        {/* transform that does nothing to establish positioning context for absolute positioning */}
-        <Box transform="rotate(0deg)" display="block" bg="transparent" paddingTop="100%" bgImage={placeholderURLs[this.state.imgIndx] /* load item url: this.state.item.img_urls[this.state.imgIndx] */} bgSize="cover" bgPos="center">
-          {/* arrows */}
-          <Flex id="arrows" className={isTouchscreen() ? "is-touchscreen" : ""} pos="absolute" top="0" left="0" width="100%" height="100%" flexDirection="row" alignItems="center" justifyContent="space-between">
-            <Flex onClick={this.leftArrowClick} width="20%" height="30%" p="5%" alignItems="center"><LeftArrow stroke="white" /></Flex>
-            <Flex onClick={this.rightArrowClick} width="20%" height="30%" p="5%" alignItems="center"><RightArrow stroke="white" /></Flex>
-          </Flex>
-        </Box>
-        <Text color={subTextColor} fontSize="sm" as="i" fontWeight="bold">item #{this.state.item._id}</Text>
-        <Text color={textColor} fontWeight="bold">price: ${this.state.item.price},00 COP</Text>
-      </Box>
-    )
-  }
+  )
 
-  leftArrowClick() {
-    let newIndx = this.state.imgIndx - 1;
+  useEffect(() => {
+    function onResize() {
+      const grid = document.getElementById("storeGrid")!
+      // cell color depends on how many columns there are
+      setState({ ...state, itemsPerRow: getComputedStyle(grid).getPropertyValue("grid-template-columns").split(" ").length })
+    }
+    window.addEventListener("resize", onResize)
+    console.log("useeffect")
+    onResize()
+    // FIXME: itemTile colors not set on first render
+
+    return function cleanup() {
+      window.removeEventListener("resize", onResize)
+    }
+  }, [state.indx, state.item, state.itemsPerRow, state.imgIndx])
+
+  function leftArrowClick() {
+    let newIndx = state.imgIndx - 1;
     if (newIndx < 0) newIndx = placeholderURLs.length - 1 // this.state.item.img_urls.length - 1;
-    this.setState({ imgIndx: newIndx })
+    setState({ ...state, imgIndx: newIndx })
   }
 
-  rightArrowClick() {
-    let newIndx = this.state.imgIndx + 1
+  function rightArrowClick() {
+    let newIndx = state.imgIndx + 1
     if (newIndx > placeholderURLs.length - 1 /*this.state.item.img_urls.length - 1*/) newIndx = 0
-    this.setState({ imgIndx: newIndx })
+    setState({ ...state, imgIndx: newIndx })
   }
+
+  const showItemBox = useSetRecoilState(activeItemState)
+
+  // start at opposite color if number of rows odd and column number is odd
+  const isOdd = (n: number) => { return n % 2 === 1 }
+  const isEven = (n: number) => { return !isOdd(n) }
+  const colNum = Math.trunc(state.indx / state.itemsPerRow)
+  const reversed = isEven(state.itemsPerRow) && isOdd(colNum)
+  const bgColor = reversed ? (isOdd(state.indx) ? "red" : "black") : (isOdd(state.indx) ? "black" : "red")
+  const textColor = "white" //reversed ? (isOdd(props.indx) ? "black" : "white") : (isOdd(props.indx) ? "white" : "black")
+  const subTextColor = "gray" //reversed ? (isOdd(props.indx) ? "black" : "gray") : (isOdd(props.indx) ? "gray" : "black")
+  return (
+    <Box id="item" p="2em" background={bgColor} border="2px solid white" onClick={() => { showItemBox(state.item) }}>
+      {/* transform that does nothing to establish positioning context for absolute positioning */}
+      <Box transform="rotate(0deg)" display="block" bg="transparent" paddingTop="100%" bgImage={placeholderURLs[state.imgIndx] /* load item url: this.state.item.img_urls[this.state.imgIndx] */} bgSize="cover" bgPos="center">
+        {/* arrows */}
+        <Flex id="arrows" className={isTouchscreen() ? "is-touchscreen" : ""} pos="absolute" top="0" left="0" width="100%" height="100%" flexDirection="row" alignItems="center" justifyContent="space-between">
+          <Flex onClick={leftArrowClick} width="20%" height="30%" p="5%" alignItems="center"><LeftArrow stroke="white" /></Flex>
+          <Flex onClick={rightArrowClick} width="20%" height="30%" p="5%" alignItems="center"><RightArrow stroke="white" /></Flex>
+        </Flex>
+      </Box>
+      <Text color={subTextColor} fontSize="sm" as="i" fontWeight="bold">item #{state.item._id}</Text>
+      <Text color={textColor} fontWeight="bold">price: ${state.item.price},00 COP</Text>
+    </Box>
+  )
 }

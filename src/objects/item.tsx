@@ -4,7 +4,7 @@ export class Item {
   img_urls: string[]
   tags: string[]
   times_acquired: number;
-  availability: {}
+  availability: { [country: string]: { [color: string]: { [size: string]: number } } }
 
   constructor({
     _id, price, img_urls, tags, times_acquired, availability,
