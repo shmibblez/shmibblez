@@ -185,7 +185,7 @@ const ItemTile = (props: { indx: number, item: Item }) => {
     window.addEventListener("resize", onResize)
     console.log("useeffect")
     onResize()
-    // FIXME: itemTile colors not set on first render
+    // FIXME: itemTile colors not set smoothly on first render
 
     return function cleanup() {
       window.removeEventListener("resize", onResize)
