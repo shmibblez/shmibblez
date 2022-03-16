@@ -8,6 +8,7 @@ import { atom, selector, useRecoilState, useRecoilValue, useSetRecoilState } fro
 import { apolloClient, isTouchscreen } from '..';
 import { itemsForSaleQuery } from '../gql_queries';
 import { activeItemState } from './item_box';
+import { ItemImages } from '../components/itemImages';
 
 // TODO: add popup container that shows products when they're clicked on
 // popup should cover whole page with borders that are transparent but 
@@ -103,14 +104,14 @@ function ItemsLoader() {
         .then(
           function onFulfilled(result) {
             if (result.error) {
-              console.log("-- error")
+              // console.log("-- error")
               setState({ ...state, queryState: "error", error: "unknown" })
             } else if (result.errors) {
-              console.log("-- errors")
+              // console.log("-- errors")
               setState({ ...state, queryState: "error", error: "unknown" })
             } else if (result.data) {
               const newItems = Item.parseGQLResult(result.data, "itemsForSale")
-              console.log("-- data length: ", newItems.length)
+              // console.log("-- data length: ", newItems.length)
               if (newItems.length <= 0) {
                 setState({ ...state, queryState: "noMoreItems" });
               } else {
@@ -119,7 +120,7 @@ function ItemsLoader() {
             }
           },
           function onRejected(error) {
-            console.log("query rejected, error: ", error)
+            // console.log("query rejected, error: ", error)
             setState({ ...state, queryState: "error", error: "unknown" })
           }
         )
@@ -145,7 +146,7 @@ function Items() {
     // the amount of space between currentOffset and bottom of page before loading more
     const threshold = window.innerHeight / 2; // px
     if (currentOffset > bodyHeight - 1 - threshold) {
-      console.log("reached bottom")
+      // console.log("reached bottom")
       setQueryState("loading")
     }
   }
@@ -157,7 +158,6 @@ function Items() {
     return () => { window.removeEventListener("scroll", loadMoreItems) }
   })
   const items = useRecoilValue(itemsState)
-  console.log("Items rendering, items length: ", items.length)
   return items.map((item, indx) => (<ItemTile key={item._id} indx={indx} item={item} />))
 }
 
@@ -167,44 +167,42 @@ const placeholderURLs = [
 ]
 
 const ItemTile = (props: { indx: number, item: Item }) => {
-  const [state, setState] = useState<{ indx: number, item: Item, itemsPerRow: number, imgIndx: number }>(
+  const itemsPerRow = () => {
+    const grid = document.getElementById("storeGrid")
+    if (!grid) return -1
+    return getComputedStyle(grid).getPropertyValue("grid-template-columns").split(" ").length
+  }
+  const [state, setState] = useState<{ indx: number, item: Item, itemsPerRow: number }>(
     {
       indx: props.indx, // index of item in grid
       item: props.item,
-      itemsPerRow: -1, // items per row, for figuring out if row colors reversed
-      imgIndx: 0, // index of currently displayed image
+      itemsPerRow: itemsPerRow(), // items per row, for figuring out if row colors reversed
     }
   )
 
   useEffect(() => {
     function onResize() {
-      const grid = document.getElementById("storeGrid")!
+      // prevent pointless rebuilds
+      const n = itemsPerRow()
+      if (n === state.itemsPerRow) return
       // cell color depends on how many columns there are
-      setState({ ...state, itemsPerRow: getComputedStyle(grid).getPropertyValue("grid-template-columns").split(" ").length })
+      setState({ ...state, itemsPerRow: itemsPerRow() })
     }
     window.addEventListener("resize", onResize)
-    console.log("useeffect")
     onResize()
     // FIXME: itemTile colors not set smoothly on first render
-
     return function cleanup() {
       window.removeEventListener("resize", onResize)
     }
-  }, [state.indx, state.item, state.itemsPerRow, state.imgIndx])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.itemsPerRow])
 
-  function leftArrowClick() {
-    let newIndx = state.imgIndx - 1;
-    if (newIndx < 0) newIndx = placeholderURLs.length - 1 // this.state.item.img_urls.length - 1;
-    setState({ ...state, imgIndx: newIndx })
+  const setActieItemState = useSetRecoilState(activeItemState)
+  const showItemBox = (e: React.SyntheticEvent) => {
+    console.log("clicked item")
+    console.log(e.target)
+    setActieItemState(state.item)
   }
-
-  function rightArrowClick() {
-    let newIndx = state.imgIndx + 1
-    if (newIndx > placeholderURLs.length - 1 /*this.state.item.img_urls.length - 1*/) newIndx = 0
-    setState({ ...state, imgIndx: newIndx })
-  }
-
-  const showItemBox = useSetRecoilState(activeItemState)
 
   // start at opposite color if number of rows odd and column number is odd
   const isOdd = (n: number) => { return n % 2 === 1 }
@@ -215,15 +213,9 @@ const ItemTile = (props: { indx: number, item: Item }) => {
   const textColor = "white" //reversed ? (isOdd(props.indx) ? "black" : "white") : (isOdd(props.indx) ? "white" : "black")
   const subTextColor = "gray" //reversed ? (isOdd(props.indx) ? "black" : "gray") : (isOdd(props.indx) ? "gray" : "black")
   return (
-    <Box id="item" p="2em" background={bgColor} border="2px solid white" onClick={() => { showItemBox(state.item) }}>
+    <Box id="item" p="2em" background={bgColor} border="2px solid white" onClick={showItemBox}>
       {/* transform that does nothing to establish positioning context for absolute positioning */}
-      <Box transform="rotate(0deg)" display="block" bg="transparent" paddingTop="100%" bgImage={placeholderURLs[state.imgIndx] /* load item url: this.state.item.img_urls[this.state.imgIndx] */} bgSize="cover" bgPos="center">
-        {/* arrows */}
-        <Flex id="arrows" className={isTouchscreen() ? "is-touchscreen" : ""} pos="absolute" top="0" left="0" width="100%" height="100%" flexDirection="row" alignItems="center" justifyContent="space-between">
-          <Flex onClick={leftArrowClick} width="20%" height="30%" p="5%" alignItems="center"><LeftArrow stroke="white" /></Flex>
-          <Flex onClick={rightArrowClick} width="20%" height="30%" p="5%" alignItems="center"><RightArrow stroke="white" /></Flex>
-        </Flex>
-      </Box>
+      <ItemImages item={state.item} />
       <Text color={subTextColor} fontSize="sm" as="i" fontWeight="bold">item #{state.item._id}</Text>
       <Text color={textColor} fontWeight="bold">price: ${state.item.price},00 COP</Text>
     </Box>

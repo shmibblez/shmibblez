@@ -11,10 +11,10 @@ import { ItemBox } from './pages/item_box';
 // TODO: custom resolver, rename from itemsForSale to itemsCustom (better describes filter)
 function App() {
   return (
-    <Box>
+    <Box zIndex="1">
       {/* ItemBox shows item info */}
-      <ItemBox />
-      <Tabs variant="line" isLazy>
+      <ItemBox style={{ zIndex: 2 }} />
+      <Tabs variant="line" isLazy zIndex="1" position="relative" left="0" right="0">
         <Flex direction="row">
           <Logos style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", padding: "8px" }} />
           <TabList flex="1" justifyContent="space-evenly" flexDirection={{ base: "column", sm: "row" }} bg="black" color="white">
