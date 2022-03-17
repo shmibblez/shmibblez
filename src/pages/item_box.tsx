@@ -60,7 +60,7 @@ export function ItemBox(props: React.HTMLAttributes<HTMLDivElement>) {
     <Box {...props} bg="whiteAlpha.500" h="100%" overflowY="scroll" p="2em" pos="fixed" left="0" top="0" right="0" bottom="0" onClick={hideItemBox}>
       <Box color="black" bgColor="black" p="2em" minH="100%" transform="rotate(0)" onClick={e => { e.stopPropagation() }}>
         {/* TODO: add ui according to plans/blueprint */}
-        <Flex justifyContent="center"><Box w={imagesWidth}><ItemImages item={item} style={{ zIndex: 0 }} /></Box></Flex>
+        <ItemImages item={item} innerWidth={imagesWidth} style={{ zIndex: 0 }} />
         <Box zIndex="1" p="2em" pos="absolute" top="0" right="0" w="6em" h="6em" onClick={hideItemBox}><X /></Box>
         <Text color="gray" fontSize="sm" as="i" fontWeight="bold">item #{item._id}</Text>
         <Text color="white" fontWeight="bold">price: ${item.price},00 COP</Text>

@@ -206,7 +206,7 @@ const ItemTile = (props: { indx: number, item: Item }) => {
   const textColor = "white" //reversed ? (isOdd(props.indx) ? "black" : "white") : (isOdd(props.indx) ? "white" : "black")
   const subTextColor = "gray" //reversed ? (isOdd(props.indx) ? "black" : "gray") : (isOdd(props.indx) ? "gray" : "black")
   return (
-    <Box id="item" p="2em" background={bgColor} border="2px solid white" onClick={showItemBox}>
+    <Box p="2em" background={bgColor} border="2px solid white" onClick={showItemBox}>
       {/* transform that does nothing to establish positioning context for absolute positioning */}
       <ItemImages item={state.item} />
       <Text color={subTextColor} fontSize="sm" as="i" fontWeight="bold">item #{state.item._id}</Text>
