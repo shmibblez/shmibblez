@@ -6,7 +6,7 @@ import { atom, selector, useRecoilState, useRecoilValue, useSetRecoilState } fro
 import { apolloClient } from '..';
 import { itemsForSaleQuery } from '../gql_queries';
 import { activeItemState } from './item_box';
-import { ItemImages } from '../components/ItemImages';
+import { ItemImages } from '../components/item_images';
 
 // TODO: add popup container that shows products when they're clicked on
 // popup should cover whole page with borders that are transparent but 
@@ -183,7 +183,6 @@ const ItemTile = (props: { indx: number, item: Item }) => {
     }
     window.addEventListener("resize", onResize)
     onResize()
-    // FIXME: itemTile colors not set smoothly on first render
     return function cleanup() {
       window.removeEventListener("resize", onResize)
     }

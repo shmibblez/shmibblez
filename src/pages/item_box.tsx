@@ -3,7 +3,7 @@ import { atom, useRecoilState } from "recoil"
 import { Item } from "../objects/item"
 import React, { useEffect, useState } from "react"
 import X from "../svgs/x"
-import { ItemImages } from "../components/ItemImages"
+import { ItemImages } from "../components/item_images"
 import ShoppingCart from "../svgs/shopping_cart"
 import UpArrow from "../svgs/up_arrow"
 import DownArrow from "../svgs/down_arrow"
@@ -47,13 +47,7 @@ export function ItemBox(props: React.HTMLAttributes<HTMLDivElement>) {
 
   const hideItemBox = (e: React.SyntheticEvent) => {
     e.stopPropagation()
-    console.log("item box clicked")
-    // console.log("----------")
-    // console.log(e.currentTarget)
-    // console.log(e.target)
-    // console.log("----------")
     setActiveItemState(null)
-    // FIXME: event propagation
   }
 
   return (
