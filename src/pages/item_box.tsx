@@ -99,7 +99,7 @@ const AmtSelector = (props: { item: Item, size: Size }) => {
       <Spacer ems="0.5" />
       <Flex flexDir="column">
         <UpArrow />
-        <Text color="white" fontWeight="bold" fontSize="xl">1</Text>
+        <Text color="white" fontWeight="bold" fontSize="l">0</Text>
         <DownArrow />
       </Flex>
     </Flex>
