@@ -189,11 +189,9 @@ const ItemTile = (props: { indx: number, item: Item }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.itemsPerRow])
 
-  const setActieItemState = useSetRecoilState(activeItemState)
+  const setActiveItemState = useSetRecoilState(activeItemState)
   const showItemBox = (e: React.SyntheticEvent) => {
-    console.log("clicked item")
-    console.log(e.target)
-    setActieItemState(state.item)
+    setActiveItemState(state.item)
   }
 
   // start at opposite color if number of rows odd and column number is odd

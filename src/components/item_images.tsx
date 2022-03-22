@@ -13,12 +13,13 @@ const placeholderURLs = [
 // FIXME: need to refine arrow size when container is too wide (currently oversized)
 
 /**
+ * ItemImages loads and shows item images from urls
  * 
  * @param props.innerWidth if provided, width used to constrain image while maintaining aspect ratio
  * if it werent for this, there's no way ItemImages could be rectanglar since it would fill remaining space
  * to maintain square aspect ratio
  */
-export const ItemImages = (props: { item: Item, innerWidth?: number } & React.HTMLAttributes<HTMLDivElement>) => {
+export const ItemImages = (props: { item: Item, innerwidth?: number } & React.HTMLAttributes<HTMLDivElement>) => {
   const [state, setState] = useState({ item: props.item, imgIndx: 0 })
 
   function leftArrowClick(e: React.SyntheticEvent) {
@@ -36,13 +37,13 @@ export const ItemImages = (props: { item: Item, innerWidth?: number } & React.HT
   return (
     <Box>
       <Flex id="item" transform="rotate(0)">
-        <Flex w={props.innerWidth ?? "100%"} margin="auto">
+        <Flex w={props.innerwidth ?? "100%"} margin="auto">
           <Box {...props} w="100%" display="block" paddingTop="100%" bgImage={placeholderURLs[state.imgIndx] /* load item url: this.state.item.img_urls[this.state.imgIndx] */} bgSize="cover" bgPos="center" />
         </Flex>
         {/* arrows */}
         <Flex flex="1" id="arrows" className={isTouchscreen() ? "is-touchscreen" : ""} pos="absolute" top="0" left="0" width="100%" height="100%" flexDirection="row" alignItems="center" justifyContent="space-between">
-          <Flex onClick={leftArrowClick} width="20%" height="30%" p="5%" alignItems="center"><LeftArrow stroke="white" /></Flex>
-          <Flex onClick={rightArrowClick} width="20%" height="30%" p="5%" alignItems="center"><RightArrow stroke="white" /></Flex>
+          <Flex onClick={leftArrowClick} width="20%" height="30%" p="5%" alignItems="center" justifyContent="center"><LeftArrow stroke="white" /></Flex>
+          <Flex onClick={rightArrowClick} width="20%" height="30%" p="5%" alignItems="center" justifyContent="center"><RightArrow stroke="white" /></Flex>
         </Flex>
       </Flex>
     </Box>

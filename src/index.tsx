@@ -4,6 +4,7 @@ import './css/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+import { createBreakpoints } from "@chakra-ui/theme-tools"
 import { RecoilRoot } from 'recoil';
 import * as Realm from "realm-web";
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from "@apollo/client";
@@ -14,8 +15,16 @@ document.body.style.backgroundColor = "black"
 
 export const isTouchscreen = () => { return window.matchMedia("(pointer: coarse)").matches }
 
+const breakpoints = createBreakpoints({
+  sm: '30em',
+  md: '48em',
+  lg: '62em',
+  xl: '80em',
+})
+
 /** chakra setup **/
 const theme = extendTheme({
+  ...breakpoints,
   components: {
     Tabs: {
       baseStyle: {
