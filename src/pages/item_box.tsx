@@ -72,31 +72,12 @@ const Spacer = (props: { ems?: string }) => (<Box w={(props.ems ?? "1") + "em"} 
 const SizeAndAmtSelector = (props: { item: Item }) => {
   const item = props.item
   const templateColumns = useBreakpointValue({
-    base: "auto",
-    sm: "repeat(3, auto)",
-    md: "repeat(4, auto)"
+    base: "minmax(0px,auto)",
+    sm: "repeat(3, minmax(0px,auto))",
+    md: "repeat(4, minmax(0px,auto))"
   })
-  // const selectors = useBreakpointValue({
-  //   base: (<React.Fragment>
-  //     <Flex height="4em" justifyContent="center"><ShoppingCart height="100%" /></Flex>
-  //     <AmtSelector item={item} size={"s"} />
-  //     <AmtSelector item={item} size={"m"} />
-  //     <AmtSelector item={item} size={"l"} />
-  //   </React.Fragment>),
-  //   sm: (<React.Fragment>
-  //     <AmtSelector item={item} size={"s"} />
-  //     <AmtSelector item={item} size={"m"} />
-  //     <AmtSelector item={item} size={"l"} />
-  //   </React.Fragment>),
-  //   md: (<React.Fragment>
-  //     <Flex height="4em" justifyContent="center"><ShoppingCart height="100%" /></Flex>
-  //     <AmtSelector item={item} size={"s"} />
-  //     <AmtSelector item={item} size={"m"} />
-  //     <AmtSelector item={item} size={"l"} />
-  //   </React.Fragment>)
-  // })
   return (
-    <Grid border="1px solid white" p="1em" templateColumns={templateColumns} gap="1em" alignItems="center">
+    <Grid border="1px solid white" p="1em" w="100%" templateColumns={templateColumns} gap="1em" alignItems="center">
       <GridItem colSpan={{ base: 1, sm: 3, md: 1 }}><Flex height="4em" justifyContent="center"><ShoppingCart height="100%" /></Flex></GridItem>
       <GridItem><AmtSelector item={item} size={"s"} /></GridItem>
       <GridItem><AmtSelector item={item} size={"m"} /></GridItem>

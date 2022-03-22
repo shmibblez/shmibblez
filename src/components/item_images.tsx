@@ -42,8 +42,8 @@ export const ItemImages = (props: { item: Item, innerwidth?: number } & React.HT
         </Flex>
         {/* arrows */}
         <Flex flex="1" id="arrows" className={isTouchscreen() ? "is-touchscreen" : ""} pos="absolute" top="0" left="0" width="100%" height="100%" flexDirection="row" alignItems="center" justifyContent="space-between">
-          <Flex onClick={leftArrowClick} width="20%" height="30%" p="5%" alignItems="center" justifyContent="center"><LeftArrow stroke="white" /></Flex>
-          <Flex onClick={rightArrowClick} width="20%" height="30%" p="5%" alignItems="center" justifyContent="center"><RightArrow stroke="white" /></Flex>
+          <Flex onClick={leftArrowClick} width="20%" height="30%" p="5%" alignItems="center" justifyContent="center"><LeftArrow stroke="#ffffffdd" /></Flex>
+          <Flex onClick={rightArrowClick} width="20%" height="30%" p="5%" alignItems="center" justifyContent="center"><RightArrow stroke="#ffffffdd" /></Flex>
         </Flex>
       </Flex>
     </Box>
