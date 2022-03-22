@@ -1,4 +1,4 @@
-import { Box, ComponentWithAs, Flex, FlexProps, Grid, GridItem, Input, SimpleGrid, Text, useBreakpointValue } from "@chakra-ui/react"
+import { Box, Flex, Grid, GridItem, Input, Text, useBreakpointValue } from "@chakra-ui/react"
 import { atom, useRecoilState } from "recoil"
 import { Item } from "../objects/item"
 import React, { useEffect, useState } from "react"
