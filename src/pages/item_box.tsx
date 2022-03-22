@@ -1,4 +1,4 @@
-import { Box, ComponentWithAs, Flex, FlexProps, Input, SimpleGrid, Text, useBreakpointValue } from "@chakra-ui/react"
+import { Box, ComponentWithAs, Flex, FlexProps, Grid, GridItem, Input, SimpleGrid, Text, useBreakpointValue } from "@chakra-ui/react"
 import { atom, useRecoilState } from "recoil"
 import { Item } from "../objects/item"
 import React, { useEffect, useState } from "react"
@@ -71,13 +71,37 @@ const Spacer = (props: { ems?: string }) => (<Box w={(props.ems ?? "1") + "em"} 
 /* TODO: set cart state from here depending on selections */
 const SizeAndAmtSelector = (props: { item: Item }) => {
   const item = props.item
+  const templateColumns = useBreakpointValue({
+    base: "auto",
+    sm: "repeat(3, auto)",
+    md: "repeat(4, auto)"
+  })
+  // const selectors = useBreakpointValue({
+  //   base: (<React.Fragment>
+  //     <Flex height="4em" justifyContent="center"><ShoppingCart height="100%" /></Flex>
+  //     <AmtSelector item={item} size={"s"} />
+  //     <AmtSelector item={item} size={"m"} />
+  //     <AmtSelector item={item} size={"l"} />
+  //   </React.Fragment>),
+  //   sm: (<React.Fragment>
+  //     <AmtSelector item={item} size={"s"} />
+  //     <AmtSelector item={item} size={"m"} />
+  //     <AmtSelector item={item} size={"l"} />
+  //   </React.Fragment>),
+  //   md: (<React.Fragment>
+  //     <Flex height="4em" justifyContent="center"><ShoppingCart height="100%" /></Flex>
+  //     <AmtSelector item={item} size={"s"} />
+  //     <AmtSelector item={item} size={"m"} />
+  //     <AmtSelector item={item} size={"l"} />
+  //   </React.Fragment>)
+  // })
   return (
-    <SimpleGrid border="1px solid white" p="1em" columns={{ base: 1, sm: 2, md: 4 }} spacingX="0.5em" spacingY="1em" alignItems="center">
-      <Flex height="4em" justifyContent="center"><ShoppingCart height="100%" /></Flex>
-      <AmtSelector item={item} size={"s"} />
-      <AmtSelector item={item} size={"m"} />
-      <AmtSelector item={item} size={"l"} />
-    </SimpleGrid>
+    <Grid border="1px solid white" p="1em" templateColumns={templateColumns} gap="1em" alignItems="center">
+      <GridItem colSpan={{ base: 1, sm: 3, md: 1 }}><Flex height="4em" justifyContent="center"><ShoppingCart height="100%" /></Flex></GridItem>
+      <GridItem><AmtSelector item={item} size={"s"} /></GridItem>
+      <GridItem><AmtSelector item={item} size={"m"} /></GridItem>
+      <GridItem><AmtSelector item={item} size={"l"} /></GridItem>
+    </Grid>
   );
 
 }
