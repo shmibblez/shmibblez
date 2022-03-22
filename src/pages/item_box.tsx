@@ -53,8 +53,8 @@ export function ItemBox(props: React.HTMLAttributes<HTMLDivElement>) {
   }
 
   return (
-    <Box {...props} bg="whiteAlpha.500" h="100%" overflowY="scroll" p="2em" pos="fixed" left="0" top="0" right="0" bottom="0" onClick={hideItemBox}>
-      <Box color="black" bgColor="black" p="2em" minH="100%" transform="rotate(0)" onClick={e => { e.stopPropagation() }}>
+    <Box {...props} bg="whiteAlpha.500" h="100%" p="2em" pos="fixed" left="0" top="0" right="0" bottom="0" onClick={hideItemBox}>
+      <Box overflowY="scroll" color="black" bgColor="black" p="2em" h="100%" transform="rotate(0)" onClick={e => { e.stopPropagation() }}>
         {/* TODO: add ui according to plans/blueprint */}
         <ItemImages item={item} innerwidth={imagesWidth} style={{ zIndex: 0 }} />
         <Box zIndex="1" p="2em" pos="absolute" top="0" right="0" w="6em" h="6em" onClick={hideItemBox}><X /></Box>
@@ -72,17 +72,17 @@ const Spacer = (props: { ems?: string }) => (<Box w={(props.ems ?? "1") + "em"} 
 const SizeAndAmtSelector = (props: { item: Item }) => {
   const item = props.item
   const templateColumns = useBreakpointValue({
-    base: "minmax(0px,auto)",
+    base: "repeat(2, minmax(0px,auto))",
     sm: "repeat(3, minmax(0px,auto))",
     md: "repeat(4, minmax(0px,auto))"
   })
   return (
-    <Grid border="1px solid white" p="1em" w="100%" templateColumns={templateColumns} gap="1em" alignItems="center">
-      <GridItem colSpan={{ base: 1, sm: 3, md: 1 }}><Flex height="4em" justifyContent="center"><ShoppingCart height="100%" /></Flex></GridItem>
+    <Grid border="1px solid white" p="1em" w="100%" templateColumns={templateColumns} gap="1em" alignItems="center" >
+      <GridItem colSpan={{ base: 2, sm: 3, md: 1 }}><Flex height="4em" justifyContent="center"><ShoppingCart height="100%" /></Flex></GridItem>
       <GridItem><AmtSelector item={item} size={"s"} /></GridItem>
       <GridItem><AmtSelector item={item} size={"m"} /></GridItem>
       <GridItem><AmtSelector item={item} size={"l"} /></GridItem>
-    </Grid>
+    </Grid >
   );
 
 }
@@ -102,7 +102,7 @@ const AmtSelector = (props: { item: Item, size: Size }) => {
   return (
     <Flex h="4em" flexDir="row" alignItems="center" justifyContent="center" >
       <SizeLetter size={props.size} />
-      <Spacer ems="0.5" />
+      <Spacer ems="1" />
       <Flex direction="column" h="100%" p="0" justifyContent="space-between" border="1px solid white">
         {/* TODO: when adding/removing item, make sure cant go below 0 and is within available amount, else show error (errors can pile up below amount box, just add error element array below) */}
         <UpArrow height="25%" onClick={() => setAmt(amt + 1)} />

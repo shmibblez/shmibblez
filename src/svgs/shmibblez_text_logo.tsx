@@ -4,8 +4,8 @@ import * as React from "react";
 // aspect ratio: 49:5
 const ShmibblezTextLogo = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
-    strokeLinejoin="bevel"
-    strokeLinecap="square"
+    strokeLinejoin="round"
+    strokeLinecap="round"
     strokeWidth={0.55}
     stroke="#FFF"
     fill="none"
