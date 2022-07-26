@@ -1,6 +1,6 @@
 import { Box, Button, Flex, SimpleGrid, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import "../css/store.css"
+import "../css/home.css"
 import { Item } from '../objects/item';
 import { atom, selector, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { apolloClient } from '..';
