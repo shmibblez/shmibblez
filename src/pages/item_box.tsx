@@ -8,6 +8,7 @@ import ShoppingCart from "../svgs/shopping_cart"
 import UpArrow from "../svgs/up_arrow"
 import DownArrow from "../svgs/down_arrow"
 import { LargeLetter, MediumLetter, SmallLetter } from "../svgs/size_letters"
+import { Colorz } from ".."
 
 
 /**
@@ -54,16 +55,16 @@ export function ItemBox(props: React.HTMLAttributes<HTMLDivElement>) {
 
   return (
     <Box {...props} bg="whiteAlpha.500" h="100%" p="2em" pos="fixed" left="0" top="0" right="0" bottom="0" onClick={hideItemBox}>
-      <Box overflowY="scroll" color="black" bgColor="black" p="2em" h="100%" transform="rotate(0)" onClick={e => { e.stopPropagation() }}>
+      <Box overflowY="scroll" color={Colorz.color2} bgColor={Colorz.color2} p="2em" h="100%" transform="rotate(0)" onClick={e => { e.stopPropagation() }}>
         {/* TODO: add ui according to plans/blueprint */}
         <ItemImages item={item} innerwidth={imagesWidth} style={{ zIndex: 0 }} />
         <Box zIndex="1" p="2em" pos="absolute" top="0" right="0" w="6em" h="6em" onClick={hideItemBox}><X /></Box>
         <Text color="gray" fontSize="sm" as="i" fontWeight="bold">item #{item._id}</Text>
-        <Text color="white" fontWeight="bold">price: ${item.price},00 COP</Text>
-        <Text color="white" fontWeight="bold" pb="0.5em">add to cart:</Text>
+        <Text color={Colorz.color3} fontWeight="bold">price: ${item.price},00 COP</Text>
+        <Text color={Colorz.color3} fontWeight="bold" pb="0.5em">add to cart:</Text>
         <SizeAndAmtSelector item={item} />
-      </Box>
-    </Box>
+      </Box >
+    </Box >
   )
 }
 
@@ -106,7 +107,7 @@ const AmtSelector = (props: { item: Item, size: Size }) => {
       <Flex direction="column" h="100%" p="0" justifyContent="space-between" border="1px solid white">
         {/* TODO: when adding/removing item, make sure cant go below 0 and is within available amount, else show error (errors can pile up below amount box, just add error element array below) */}
         <UpArrow height="25%" onClick={() => setAmt(amt + 1)} />
-        <Input value={amt} onChange={onChange} p="0" textAlign="center" size="lg" color="white" width="0" minWidth="1.5em" height="40%" fontWeight="bold" border="1px solid white" borderRadius="0" />
+        <Input value={amt} onChange={onChange} p="0" textAlign="center" size="lg" color={Colorz.color3} width="0" minWidth="1.5em" height="40%" fontWeight="bold" border="1px solid white" borderRadius="0" />
         <DownArrow height="25%" onClick={() => setAmt(amt - 1)} />
       </Flex>
     </Flex>

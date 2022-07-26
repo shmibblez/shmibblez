@@ -1,6 +1,7 @@
 import { Box, Text } from '@chakra-ui/react';
 
 import { atom } from "recoil";
+import { Colorz } from '..';
 import { Item } from '../objects/item';
 
 /**
@@ -18,8 +19,8 @@ export const cartState = atom<{
 
 export const Cart = () => {
   return (
-    <Box bg="black" p="1em">
-      <Text color="white" fontWeight="bold" fontSize="3xl" >Coming soon</Text>
+    <Box bg={Colorz.color2} p="1em">
+      <Text color={Colorz.color3} fontWeight="bold" fontSize="3xl" >Coming soon</Text>
     </Box>
   )
 }

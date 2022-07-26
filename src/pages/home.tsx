@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import "../css/home.css"
 import { Item } from '../objects/item';
 import { atom, selector, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { apolloClient } from '..';
+import { apolloClient, Colorz } from '..';
 import { itemsForSaleQuery } from '../gql_queries';
 import { activeItemState } from './item_box';
 import { ItemImages } from '../components/item_images';
@@ -19,15 +19,16 @@ export function Home() {
   return (
     <Box>
       <ItemsLoader />
-      <Box bg="black" p="1em" pb="0">
-        <Text display="inline-block" color="white" fontWeight="bold" fontSize="3xl">Coming soon</Text>
+      <Box bg={Colorz.color2} p="1em" pb="0">
+        <Text display="inline-block" color={Colorz.color3} fontWeight="bold" fontSize="3xl">Coming soon</Text>
         <Box display="inline-block" width="0.25em" />
-        <Text display="inline-block" color="white" fontSize="xs">.........there will be shirts here one day</Text>
+        <Text display="inline-block" color={Colorz.color3} fontSize="xs">.........there will be shirts here one day</Text>
       </Box>
-      <Box bg="black" p="1em" color="white">
+      <Box bg={Colorz.color2} p="1em" color={Colorz.color3}>
         <Text fontSize="md">Hi i'm shmibblez, welcome to my website, it's a work in progress. I'm currently making some shirts, but haven't actually finished one yet, so when that's done you'll be able to observe and hopefully purchase them. For now, however, you can take a look at some of my dev projects, and thats pretty much it lol</Text>
       </Box >
-      <SimpleGrid minChildWidth={{ base: "auto", sm: "400px" }} id="storeGrid" border="1px solid white">
+      <Box h="0.5em" w="100%" bg={Colorz.color3} />
+      <SimpleGrid bg={Colorz.color3} minChildWidth={{ base: "auto", sm: "400px" }} id="storeGrid" spacingX="0.5em" spacingY="0.5em">
         {Items()}
       </SimpleGrid>
       <QueryStateBar />
@@ -44,15 +45,15 @@ function QueryStateBar() {
   switch (state) {
     case "error": // if error occurs, show message and button that triggers query retry
       return (
-        <Flex p="1em" direction="row" bg="white">
+        <Flex p="1em" direction="row" bg={Colorz.color3}>
           <Text flex="1">Failed to load, check wifi connection then retry. If not, I probably messed up some code, check back in a couple of days while I fix it.</Text>
           <Button onClick={() => { setState("loading") }}>Retry</Button>
         </Flex >)
     case "noMoreItems":
-      return (<Box p="1em" bg="white"><Text>no more items</Text></Box>)
+      return (<Box p="1em" bg={Colorz.color3}><Text color={Colorz.color2}>no more items</Text></Box>)
     case "loading": // if loading show loading indicator
       // $$$ eventually make custom css loading animation
-      return (<Box p="1em" bg="white"><Text>loading...</Text></Box>)
+      return (<Box p="1em" bg={Colorz.color3}><Text color={Colorz.color2}>loading...</Text></Box>)
     case "doneLoading": // if idle, don't show 
     default:
       return null;
@@ -199,11 +200,11 @@ const ItemTile = (props: { indx: number, item: Item }) => {
   const isEven = (n: number) => { return !isOdd(n) }
   const colNum = Math.trunc(state.indx / state.itemsPerRow)
   const reversed = isEven(state.itemsPerRow) && isOdd(colNum)
-  const bgColor = reversed ? (isOdd(state.indx) ? "red" : "black") : (isOdd(state.indx) ? "black" : "red")
-  const textColor = "white" //reversed ? (isOdd(props.indx) ? "black" : "white") : (isOdd(props.indx) ? "white" : "black")
+  const bgColor = reversed ? (isOdd(state.indx) ? Colorz.color1 : Colorz.color2) : (isOdd(state.indx) ? Colorz.color2 : Colorz.color1)
+  const textColor = Colorz.color3  //reversed ? (isOdd(props.indx) ? "black" : "white") : (isOdd(props.indx) ? "white" : "black")
   const subTextColor = "gray" //reversed ? (isOdd(props.indx) ? "black" : "gray") : (isOdd(props.indx) ? "gray" : "black")
   return (
-    <Box p="2em" background={bgColor} border="2px solid white" onClick={showItemBox}>
+    <Box p="2em" background={bgColor} onClick={showItemBox}>
       {/* transform that does nothing to establish positioning context for absolute positioning */}
       <ItemImages item={state.item} />
       <Text color={subTextColor} fontSize="sm" as="i" fontWeight="bold">item #{state.item._id}</Text>

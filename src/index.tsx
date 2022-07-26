@@ -9,9 +9,15 @@ import { RecoilRoot } from 'recoil';
 import * as Realm from "realm-web";
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from "@apollo/client";
 
+export class Colorz {
+  static get color1() { return "Red" }
+  static get color2() { return "MidnightBlue" }
+  static get color3() { return "WhiteSmoke" }
+}
+
 /** page props setup **/
 document.body.style.height = "100%"
-document.body.style.backgroundColor = "black"
+document.body.style.backgroundColor = Colorz.color2
 
 export const isTouchscreen = () => { return window.matchMedia("(pointer: coarse)").matches }
 
@@ -39,10 +45,10 @@ const theme = extendTheme({
         line: {
           tab: {
             borderBottom: "4px solid",
-            borderColor: "white",
+            borderColor: Colorz.color3,
             _selected: {
-              borderColor: "red",
-              color: "red"
+              borderColor: Colorz.color1,
+              color: Colorz.color1
             }
           },
         }

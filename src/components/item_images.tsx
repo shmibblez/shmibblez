@@ -1,6 +1,6 @@
 import { Box, Flex, Img } from "@chakra-ui/react"
-import React, { ReactElement, useState } from "react"
-import { isTouchscreen } from ".."
+import React, { useState } from "react"
+import { isTouchscreen, Colorz } from ".."
 import { Item } from "../objects/item"
 import LeftArrow from "../svgs/left_arrow"
 import RightArrow from "../svgs/right_arrow"
@@ -38,7 +38,7 @@ export const ItemImages = (props: { item: Item, innerwidth?: number } & React.HT
     <Box>
       <Flex id="item" transform="rotate(0)">
         <Flex w={props.innerwidth ?? "100%"} margin="auto">
-          <Box {...props} transform="rotate(0)" bg="black" w="100%" display="block" paddingTop="100%" bgSize="cover" bgPos="center" >
+          <Box {...props} transform="rotate(0)" bg={Colorz.color2} w="100%" display="block" paddingTop="100%" bgSize="cover" bgPos="center" >
             <React.Fragment>
               {state.item.img_urls.map((url, i) => (
                 (
