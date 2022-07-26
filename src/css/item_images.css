@@ -1,0 +1,25 @@
+@keyframes onShow {
+  0% {opacity: 0; display: block;}
+  100% {opacity: 1;}
+}
+
+@keyframes onHide {
+  0% {opacity: 1;}
+  100% {opacity: 0; display: none;}
+}
+
+#item [id="imgVisible"] {
+  animation-name: onShow;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+#item [id="wasVisible"] {
+  animation-name: onHide;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+#item [id="imgInvisible"] {
+  display: none;
+}

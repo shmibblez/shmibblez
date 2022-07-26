@@ -1,0 +1,14 @@
+#item #arrows {
+  opacity: 0;
+  transition: opacity .5s;
+}
+
+#item:hover #arrows {
+  opacity: 1;
+  transition: opacity .25s;
+}
+
+/* if is touchscreen show arrows since can't hover */
+#item .is-touchscreen#arrows  {
+  opacity: 1;
+}
