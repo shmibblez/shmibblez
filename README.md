@@ -1,6 +1,6 @@
-Welcome to my dev page!
+# Welcome to my dev page
 
-Here lie my accomplishments as a dev ლಠ益ಠ)ლ
+## Here lie my accomplishments as a dev ლಠ益ಠ)ლ
 
 Top 1: [Inferno Browser](https://github.com/shmibblez/Inferno), a mobile browser for android based on mozilla's Fenix browser and android components, mostly focused on added ui customizations and privacy.
 
